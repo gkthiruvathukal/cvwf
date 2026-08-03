@@ -68,6 +68,24 @@ python3 scripts/fetch-github-stats.py --username gkthiruvathukal --first-year 20
 
 Everything else in `src/content/` (personal info, education, appointments, chair highlights, recognition, funding, students, service, media) is hand-authored YAML, transcribed once from `../cv/data/*.tex`, and checked into git normally — it is the actual source of truth going forward, not a cache. Edit those files directly; there is no script that regenerates them.
 
+## Auditing for missing publications
+
+Zotero can lag behind Google Scholar, which auto-indexes new work faster than anyone manually curates a reference library. Two scripts help close that gap:
+
+```sh
+python3 scripts/find-missing-pubs.py --profile Ls7yS0IAAAAJ --since-year 2023
+```
+
+Fetches George's full Scholar publication list, filters out service/editorial noise (program committees, editorial notices, Scholar merge errors) and arXiv preprints already in the corpus under a different title, and prints recent candidates with no good title match in `src/content/publications/all.json` — a shortlist to review by hand, not something to trust blindly (Scholar's own data includes duplicates, name collisions, and truncated venue names).
+
+Once you've picked which candidates are real and confirmed their category (book/journal/conference/arXiv), hand-curate the title list at the top of `scripts/generate-missing-bibtex.py` (`CATEGORIES` dict) and run it:
+
+```sh
+python3 scripts/generate-missing-bibtex.py
+```
+
+Writes `missing-books.bib`, `missing-journal-papers.bib`, `missing-conference-papers.bib`, `missing-arxiv-papers.bib` at the repo root (gitignored — these are working files for importing into Zotero, not part of the site). It re-fetches each publication directly from George's Scholar profile page (not a keyword search — that was tested and found unreliable, since a same-topic title can rank above the actual paper) and hand-builds BibTeX from the verified fields Scholar returns. Entries with a truncated venue name or unresolvable arXiv ID get a `note` flagging that before importing.
+
 ## Content collections reference
 
 | Collection | Source | Key fields |

@@ -42,3 +42,7 @@ __pycache__/
 /bibliography/
 /src/content/publications/all.json
 /src/content/bibliometrics/bibliometrics.json
+
+# Scratch output for scripts/find-missing-pubs.py + generate-missing-bibtex.py -
+# working files for manually curating Zotero, not part of the site.
+/missing-*.bib

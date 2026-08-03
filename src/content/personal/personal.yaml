@@ -1,0 +1,28 @@
+# Hand-authored. Source: ../cv/data/08-personaldata.tex
+- id: george-thiruvathukal
+  firstName: George K.
+  lastName: Thiruvathukal
+  title: Curriculum Vitae
+  roleSummary: Professor and Chairperson
+  address:
+    institution: Loyola University Chicago
+    department: Department of Computer Science
+    street: 1032 W Sheridan Road
+    cityStateZip: Chicago, IL 60660-1537
+    country: USA
+  phone: "+1 773 508-8931"
+  email: gthiruvathukal@luc.edu
+  homepage: https://gkt.sh
+  social:
+    - platform: linkedin
+      handle: gkthiruvathukal
+      url: https://www.linkedin.com/in/gkthiruvathukal
+    - platform: github
+      handle: gkthiruvathukal
+      url: https://github.com/gkthiruvathukal
+    - platform: googlescholar
+      handle: Ls7yS0IAAAAJ
+      url: https://scholar.google.com/citations?hl=en&user=Ls7yS0IAAAAJ
+    - platform: orcid
+      handle: 0000-0002-0452-5571
+      url: https://orcid.org/0000-0002-0452-5571

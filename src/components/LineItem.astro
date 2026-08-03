@@ -1,0 +1,19 @@
+---
+// Shared label/value line (mirrors the LaTeX \cvline shape) used by funding,
+// students, and service - a bold label followed by descriptive text.
+interface Props {
+  label: string;
+  value: string;
+  dateRange?: string;
+}
+
+const { label, value, dateRange } = Astro.props;
+---
+
+<div class="avoid-break flex gap-4 py-1.5 text-sm">
+  {dateRange && <div class="w-32 shrink-0 text-slate-500">{dateRange}</div>}
+  <div class="flex-1">
+    <span class="font-medium">{label}</span>
+    <span class="text-slate-600">{value && ` — ${value}`}</span>
+  </div>
+</div>

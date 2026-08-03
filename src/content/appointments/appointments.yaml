@@ -1,0 +1,152 @@
+# Hand-transcribed. Sources: ../cv/data/11-appointments.tex, 12-industry.tex, 16-research-experiences-internships.tex
+- id: chair-loyola
+  order: 1
+  dateRange: "2022–Present"
+  title: Chairperson, Department of Computer Science
+  institution: Loyola University Chicago
+  location: Chicago, IL
+  type: academic
+
+- id: full-professor-loyola
+  order: 2
+  dateRange: "2011–Present"
+  title: Full Professor, Department of Computer Science
+  institution: Loyola University Chicago
+  location: Chicago, IL
+  type: academic
+
+- id: visiting-scientist-argonne
+  order: 3
+  dateRange: "2015–Present"
+  title: Visiting Computer Scientist, Argonne Leadership Computing Facility
+  institution: Argonne National Laboratory
+  location: Argonne, IL
+  type: academic
+
+- id: cofounder-ctsdh
+  order: 4
+  dateRange: "2010–2015"
+  title: Co-Founder and Director, Center for Textual Studies and Digital Humanities
+  institution: Loyola University Chicago
+  location: Chicago, IL
+  type: academic
+
+- id: visiting-scholar-northwestern
+  order: 5
+  dateRange: "2012–2014, 1999–2008"
+  title: Visiting Scholar, Electrical Engineering and Computer Science
+  institution: Northwestern University
+  location: Evanston, IL
+  type: academic
+
+- id: associate-professor-loyola
+  order: 6
+  dateRange: "2004–2010"
+  title: Associate Professor, Department of Computer Science
+  institution: Loyola University Chicago
+  location: Chicago, IL
+  type: academic
+
+- id: visiting-associate-professor-loyola
+  order: 7
+  dateRange: "2001–2004"
+  title: Visiting Associate Professor, Department of Computer Science
+  institution: Loyola University Chicago
+  location: Chicago, IL
+  type: academic
+
+- id: assistant-professor-depaul
+  order: 8
+  dateRange: "1999–2000"
+  title: Assistant Professor, Department of Computer Science
+  institution: DePaul University
+  location: Chicago, IL
+  type: academic
+
+- id: visiting-assistant-professor-loyola
+  order: 9
+  dateRange: "1998–1999"
+  title: Visiting Assistant Professor, Department of Computer Science
+  institution: Loyola University Chicago
+  location: Chicago, IL
+  type: academic
+
+- id: postdoc-argonne
+  order: 10
+  dateRange: "1996–1998"
+  title: Postdoctoral Computer Scientist, Mathematics and Computer Science Division
+  institution: Argonne National Laboratory
+  location: Argonne, IL
+  type: academic
+
+- id: adjunct-assistant-professor-iit
+  order: 11
+  dateRange: "1996–1997"
+  title: Adjunct Assistant Professor of Computer Science
+  institution: Illinois Institute of Technology
+  location: Chicago, IL
+  type: academic
+
+- id: president-ceo-nimkathana
+  order: 12
+  dateRange: "2002–2004"
+  title: President and CEO
+  institution: Nimkathana Corporation
+  location: Chicago, IL
+  type: industry
+
+- id: development-manager-rrd
+  order: 13
+  dateRange: "1995–1996"
+  title: Development Manager
+  institution: R.R. Donnelley and Sons/Metromail
+  location: Lombard, IL
+  type: industry
+
+- id: senior-member-technical-staff-rrd
+  order: 14
+  dateRange: "1993–1995"
+  title: Senior Member of Technical Staff
+  institution: R.R. Donnelley and Sons Technical Center
+  location: Lisle, IL
+  type: industry
+
+- id: member-technical-staff-tellabs
+  order: 15
+  dateRange: "1991–1993"
+  title: Member of Technical Staff
+  institution: "Tellabs, Inc."
+  location: Lisle, IL
+  type: industry
+
+- id: consultant-technology-advisors
+  order: 16
+  dateRange: "1989–1991"
+  title: "Part-Time Consultant, Database Application Development"
+  institution: Technology Advisors
+  location: Park Ridge, IL
+  type: industry
+
+- id: grad-lab-fellow-argonne
+  order: 17
+  dateRange: "1989–1991"
+  title: Graduate Lab Fellow, Environmental and Information Systems Division
+  institution: Argonne National Laboratory
+  location: Argonne, IL
+  type: internship
+
+- id: coop-argonne
+  order: 18
+  dateRange: "1987–1988"
+  title: Cooperative Education Program, Physics Division
+  institution: Argonne National Laboratory
+  location: Argonne, IL
+  type: internship
+
+- id: nsf-reu-unh
+  order: 19
+  dateRange: "1987"
+  title: NSF Research Experience for Undergraduates in Compiler Construction
+  institution: University of New Hampshire, Computer Science
+  location: Durham, NH
+  type: internship

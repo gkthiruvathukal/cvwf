@@ -1,0 +1,35 @@
+# Hand-transcribed. Source: ../cv/data/15-recognition.tex
+- id: sujack-award
+  order: 1
+  year: "2009"
+  award: Sujack Family Teaching Excellence Award
+  institution: Loyola University Chicago
+  location: Chicago, IL
+
+- id: iit-assistantships
+  order: 2
+  year: "1988–1994"
+  award: Teaching and Research Assistantships
+  institution: Illinois Institute of Technology
+  location: Chicago, IL
+
+- id: sigma-pi-sigma
+  order: 3
+  year: "1988"
+  award: Induction into Sigma Pi Sigma Physics National Honor Society
+  institution: Lewis University
+  location: Romeoville, IL
+
+- id: top-graduate-cas
+  order: 4
+  year: "1988"
+  award: "Top Graduate, College of Arts and Sciences, Class of 1988"
+  institution: Lewis University
+  location: Romeoville, IL
+
+- id: top-department-graduate-cs
+  order: 5
+  year: "1988"
+  award: "Top Department Graduate, Computer Science Department, Class of 1988"
+  institution: Lewis University
+  location: Romeoville, IL

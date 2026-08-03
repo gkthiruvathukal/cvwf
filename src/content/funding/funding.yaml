@@ -1,0 +1,316 @@
+# Hand-transcribed. Source: ../cv/data/20-funding.tex
+# category: research-award | university-funding | gift
+
+- id: nsf-ccf-2515526-cross
+  order: 1
+  sponsorOrGrantId: NSF CCF-2515526
+  role: PI
+  title: "Collaborative Research: Planning: CROSS: Building a Community aROund Securing the Research Software Supply Chain, Loyola University Chicago"
+  amount: "$49,996"
+  dateRange: "2025–2027"
+  category: research-award
+
+- id: neh-scholarly-editions-amy-lowell
+  order: 2
+  sponsorOrGrantId: NEH Scholarly Editions
+  role: Co-PI
+  title: "The Amy Lowell Letters Project, Scholarly Editions and Translations"
+  amount: "$299,699"
+  dateRange: "2026–2029"
+  category: research-award
+
+- id: nsf-ccf-2515526-nairr
+  order: 3
+  sponsorOrGrantId: NSF CCF-2515526
+  role: Co-PI
+  title: "Conference: NAIRR Pilot Expansion: FA2: Capacity and Community for Research-Emerging Institutions with Small-to-Medium Computing Programs to University of Wyoming, Loyola University Chicago, College of Charleston"
+  amount: "$298,882"
+  dateRange: "2025–2027"
+  category: research-award
+
+- id: nsf-cbet-2343595
+  order: 4
+  sponsorOrGrantId: NSF CBET-2343595
+  role: PI
+  title: "Collaborative Research: EAGER: CET: Exploring The Risks and Rewards of Large Language Models in Enabling Energy-Efficient Data Center Software Infrastructure"
+  amount: "$147,947"
+  dateRange: "2024–2026"
+  category: research-award
+
+- id: nsa-ncae-c-h98230-22-1-0306
+  order: 5
+  sponsorOrGrantId: NSA NCAE-C H98230-22-1-0306
+  role: co-PI
+  title: Taming Container Privileges using Userland OS Guests
+  amount: "$500,000"
+  dateRange: "2022–2024"
+  category: research-award
+
+- id: nsf-oac-2107020
+  order: 6
+  sponsorOrGrantId: NSF OAC-2107020
+  role: PI
+  title: "Collaborative Research: OAC Core: Advancing Low-Power Computer Vision at the Edge"
+  amount: "$258,000"
+  dateRange: "2021–2024"
+  category: research-award
+
+- id: nsf-oac-2104319
+  order: 7
+  sponsorOrGrantId: NSF OAC-2104319
+  role: PI
+  title: "CDSE: Collaborative: Cyber Infrastructure to Enable Computer Vision Applications at the Edge Using Automated Contextual Analysis"
+  amount: "$209,624"
+  dateRange: "2021–2024"
+  category: research-award
+
+- id: nsf-hrd-2121654
+  order: 8
+  sponsorOrGrantId: NSF HRD-2121654
+  role: Senior Personnel
+  title: "ADVANCE Adaptation: INSPIRED-Inclusive Practices in the Retention and Equity of Diverse Faculty"
+  amount: "$972,496"
+  dateRange: "2021–2024"
+  category: research-award
+
+- id: nsf-oac-2027514
+  order: 9
+  sponsorOrGrantId: NSF OAC-2027514
+  role: Senior Personnel/Consultant
+  title: "Collaborative: RAPID: Leveraging New Data Sources to Analyze the Risk of COVID-19 in Crowded Locations"
+  amount: "$50,000"
+  dateRange: "2020–2021"
+  category: research-award
+
+- id: nsf-cns-1738691
+  order: 10
+  sponsorOrGrantId: NSF CNS-1738691
+  role: Co-PI
+  title: "Collaborative Research: Chicago Alliance for Equity in Computer Science"
+  amount: "$72,497"
+  dateRange: "2017–2021"
+  category: research-award
+
+- id: nsf-oac-1445347
+  order: 11
+  sponsorOrGrantId: NSF OAC-1445347
+  role: PI
+  title: "EAGER: Collaborative Research: Making Software Engineering Work for Computational Science and Engineering: An Integrated Approach"
+  amount: "$109,598"
+  dateRange: "2014–2018"
+  category: research-award
+
+- id: nsf-ccf-0444197
+  order: 12
+  sponsorOrGrantId: NSF CCF-0444197
+  role: PI
+  title: "Collaborative Proposal: Ultra-Scalable System Software and Tools for Data-Intensive Computing"
+  amount: "$72,433"
+  dateRange: "2004–2007"
+  category: research-award
+
+- id: nsf-cns-0205652
+  order: 13
+  sponsorOrGrantId: NSF CNS-0205652
+  role: PI
+  title: "ITR: The Community Information Technology Entrepreneurship Project"
+  amount: "$1,034,500"
+  dateRange: "2002–2006"
+  category: research-award
+
+- id: nsf-cns-10423372
+  order: 14
+  sponsorOrGrantId: NSF CNS-10423372
+  role: Co-PI
+  title: "Collaborative Research: BPC-LSA: ACM SIGBP: Forming an ACM Special Interest Group to Scale the Impact of BPC Activities"
+  amount: "$38,782"
+  dateRange: "2010–2014"
+  category: research-award
+
+- id: neh-hd-50782-09
+  order: 15
+  sponsorOrGrantId: NEH HD-50782-09
+  role: Co-Director
+  title: "Humanities Research Infrastructure and Tools (HRIT): An Environment for Collaborative Textual Scholarship"
+  amount: "$50,000"
+  dateRange: "2009–2010"
+  category: research-award
+
+- id: nsf-cns-0837769
+  order: 16
+  sponsorOrGrantId: NSF CNS-0837769
+  role: Co-PI
+  title: "Improving Metropolitan Participation to Accelerate Computing Throughput and Success (IMPACTS)"
+  amount: "$141,711"
+  dateRange: "2008–2009"
+  category: research-award
+
+- id: nsf-dbi-0552888
+  order: 17
+  sponsorOrGrantId: NSF DBI-0552888
+  role: Co-PI
+  title: "REU Site: Integrated Cross-Disciplinary Summer Program in Bioinformatics"
+  amount: "$292,412"
+  dateRange: "2006–2010"
+  category: research-award
+
+- id: nsf-oac-0228926
+  order: 18
+  sponsorOrGrantId: NSF OAC-0228926
+  role: Co-PI
+  title: "HPNC: HPNC for Science Research at Loyola University Chicago"
+  amount: "$150,000"
+  dateRange: "2002–2005"
+  category: research-award
+
+- id: google-machine-perception
+  order: 19
+  sponsorOrGrantId: Google
+  role: Co-PI
+  title: "Google Research Awards, Machine Perception"
+  amount: "$75,000"
+  dateRange: "2017"
+  category: research-award
+
+- id: darpa-sbir-asymmetric-threat
+  order: 20
+  sponsorOrGrantId: DARPA SBIR Phase I
+  role: PI
+  title: Ad Hoc Human Interaction Networks for Asymmetric Threat Surveillance
+  amount: "$100,000"
+  dateRange: "2002"
+  category: research-award
+
+- id: darpa-sbir-cluster-repositories
+  order: 21
+  sponsorOrGrantId: DARPA SBIR Phase I
+  role: Co-PI
+  title: Cluster Based Repositories and Analysis
+  amount: "$100,000"
+  dateRange: "2003"
+  category: research-award
+
+- id: schreiber-venture-fund
+  order: 22
+  sponsorOrGrantId: Schreiber Venture Fund
+  role: Co-PI
+  title: "Culturally Responsive Intervention Incorporating AI to Promote Healthy Integration Among Afghan Evacuees in Illinois and Tennessee (Pilot Study)"
+  amount: "$47,763"
+  dateRange: "2024–2025"
+  category: university-funding
+
+- id: ors-autonomous-vehicle-security
+  order: 23
+  sponsorOrGrantId: Office of Research Services
+  role: PI
+  title: Autonomous Vehicle Security
+  amount: "$5,000"
+  dateRange: "2019–2020"
+  category: university-funding
+
+- id: ors-clean-air-water
+  order: 24
+  sponsorOrGrantId: Office of Research Services
+  role: PI
+  title: "Research Stimulation: Chicago Clean Air/Clean Water"
+  amount: "$20,000"
+  dateRange: "2009–2010"
+  category: university-funding
+
+- id: ors-modernist-circles
+  order: 25
+  sponsorOrGrantId: Office of Research Services
+  role: Co-PI
+  title: "Research Stimulation: Modernist Circles/Textual Studies"
+  amount: "$20,000"
+  dateRange: "2009–2010"
+  category: university-funding
+
+- id: intel-oneapi-gift
+  order: 26
+  sponsorOrGrantId: Intel
+  role: PI
+  title: Unrestricted gift to oneAPI curricular modules for systems at Loyola
+  amount: "$40,000"
+  dateRange: "2022"
+  category: gift
+
+- id: google-ml-se-gift
+  order: 27
+  sponsorOrGrantId: Google
+  role: PI
+  title: Unrestricted gift to support machine learning and software engineering research at Loyola
+  amount: "$30,000"
+  dateRange: "2019"
+  category: gift
+
+- id: facebook-research-gift
+  order: 28
+  sponsorOrGrantId: Facebook Research
+  role: PI
+  title: Unrestricted gift to support low-power computer vision and reproducibility research at Loyola
+  amount: "$30,000"
+  dateRange: "2020"
+  category: gift
+
+- id: google-research-awards-gift
+  order: 29
+  sponsorOrGrantId: Google Research Awards
+  role: PI
+  amount: "$75,000"
+  dateRange: "2017"
+  category: gift
+
+- id: 4c-insights-gift
+  order: 30
+  sponsorOrGrantId: 4C Insights
+  role: PI
+  title: Unrestricted gift to support systems research at Loyola
+  amount: "$10,000"
+  dateRange: "2017"
+  category: gift
+
+- id: typesafe-gift
+  order: 31
+  sponsorOrGrantId: Typesafe
+  role: Co-PI
+  title: Unrestricted gift to support languages/systems research at Loyola
+  amount: "$5,000"
+  dateRange: "2015"
+  category: gift
+
+- id: microsoft-hpc-bioinformatics-gift
+  order: 32
+  sponsorOrGrantId: Microsoft
+  role: PI
+  title: Unrestricted gift to support HPC and Bioinformatics Research
+  amount: "$15,000"
+  dateRange: "2009"
+  category: gift
+
+- id: microsoft-cluster-gift
+  order: 33
+  sponsorOrGrantId: Microsoft
+  role: PI
+  title: "In-kind equipment donation of computational cluster (80 nodes)"
+  amount: "$100,000"
+  dateRange: "2009"
+  category: gift
+
+- id: hp-wireless-collaboration-gift
+  order: 34
+  sponsorOrGrantId: HP
+  role: Co-PI
+  title: Learning the Wonders of Computing with Wireless Collaboration
+  amount: "$68,000"
+  dateRange: "2007"
+  category: gift
+
+- id: hostway-open-source-lab-gift
+  order: 35
+  sponsorOrGrantId: Hostway Corporation
+  role: PI
+  title: Unrestricted gift to support creation of open source laboratory
+  amount: "$30,000"
+  dateRange: "2005"
+  category: gift

@@ -1,0 +1,277 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import EntryRow from "../components/EntryRow.astro";
+import LineItem from "../components/LineItem.astro";
+import PublicationEntry from "../components/PublicationEntry.astro";
+import Icon from "../components/Icon.astro";
+
+const byOrder = <T extends { data: { order: number } }>(entries: T[]) =>
+  entries.sort((a, b) => a.data.order - b.data.order);
+
+const person = (await getEntry("personal", "george-thiruvathukal"))!.data;
+const appointments = byOrder(await getCollection("appointments"));
+const chairHighlights = byOrder(await getCollection("chair-highlights"));
+const education = byOrder(await getCollection("education"));
+const recognition = byOrder(await getCollection("recognition"));
+const funding = byOrder(await getCollection("funding"));
+const students = byOrder(await getCollection("students"));
+const service = byOrder(await getCollection("service"));
+const media = byOrder(await getCollection("media"));
+const publications = (await getCollection("publications")).sort(
+  (a, b) => (b.data.date > a.data.date ? 1 : -1),
+);
+const scholar = await getEntry("bibliometrics", "scholar");
+const github = await getEntry("bibliometrics", "github");
+
+const byType = (type: string) => appointments.filter((a) => a.data.type === type);
+
+const fundingCategories = [
+  { key: "research-award", label: "Research Awards/Grants" },
+  { key: "university-funding", label: "University Funding" },
+  { key: "gift", label: "Gifts" },
+] as const;
+
+const studentGroups = [
+  { key: "loyola", label: "Loyola University Chicago" },
+  { key: "other-institutions", label: "Other Universities and Institutions" },
+  { key: "masters-thesis", label: "Masters Students with Thesis" },
+] as const;
+
+const serviceCategories = [
+  { key: "university", label: "University Service" },
+  { key: "departmental", label: "Departmental Service" },
+  { key: "panel", label: "Panel Service" },
+  { key: "conference-committee", label: "Conference Committees" },
+  { key: "editorial-board", label: "Editorial Boards/Professional Society Service" },
+] as const;
+
+const mediaGroups = [
+  { key: "television", label: "Television" },
+  { key: "print", label: "Newspapers and Magazines" },
+] as const;
+
+const pubTypeGroups = [
+  { key: "book", label: "Books" },
+  { key: "journal", label: "Journal Articles" },
+  { key: "inproceedings", label: "Conference Papers" },
+  { key: "incollection", label: "Book Chapters" },
+  { key: "magazine", label: "Magazine Articles" },
+  { key: "techreport", label: "Technical Reports" },
+] as const;
+---
+
+<BaseLayout title={`${person.firstName} ${person.lastName} — Curriculum Vitae`}>
+  <main class="mx-auto max-w-4xl px-6 py-12 print:px-0 print:py-0">
+    <header class="border-b border-slate-300 pb-4 print:text-center">
+      <h1 class="text-3xl font-bold tracking-tight">{person.firstName} {person.lastName}</h1>
+      <p class="mt-1 text-slate-600">{person.roleSummary ?? person.title}</p>
+
+      <p class="mt-3 text-sm text-slate-600 print:text-center">
+        <span class="whitespace-nowrap">{person.address.institution}</span>
+        {person.address.department && (
+          <span class="whitespace-nowrap"> <span aria-hidden="true" class="text-slate-300">|</span> {person.address.department}</span>
+        )}
+        <span class="whitespace-nowrap"> <span aria-hidden="true" class="text-slate-300">|</span> {person.address.street}, {person.address.cityStateZip}</span>
+      </p>
+
+      <div class="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-600 print:justify-center">
+        {person.phone && (
+          <span class="inline-flex items-center gap-1.5">
+            <Icon name="phone" class="h-3.5 w-3.5 shrink-0" />{person.phone}
+          </span>
+        )}
+        <a href={`mailto:${person.email}`} class="inline-flex items-center gap-1.5 hover:text-slate-900">
+          <Icon name="email" class="h-3.5 w-3.5 shrink-0" />{person.email}
+        </a>
+        {person.homepage && (
+          <a href={person.homepage} class="inline-flex items-center gap-1.5 hover:text-slate-900">
+            <Icon name="website" class="h-3.5 w-3.5 shrink-0" />{person.homepage.replace(/^https?:\/\//, "")}
+          </a>
+        )}
+      </div>
+
+      <div class="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-600 print:justify-center">
+        {person.social.map((s) => (
+          <a href={s.url} class="inline-flex items-center gap-1.5 hover:text-slate-900">
+            <Icon name={s.platform} class="h-3.5 w-3.5 shrink-0" />{s.handle}
+          </a>
+        ))}
+      </div>
+    </header>
+
+    <section class="mt-8">
+      <h2 class="text-lg font-semibold uppercase tracking-wide text-slate-700">Academic Appointments</h2>
+      <div class="mt-2 divide-y divide-slate-100">
+        {byType("academic").map((a) => (
+          <EntryRow dateRange={a.data.dateRange} title={a.data.title} institution={a.data.institution} location={a.data.location} />
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-lg font-semibold uppercase tracking-wide text-slate-700">Chairperson Service and Highlights</h2>
+      <ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-700">
+        {chairHighlights.map((h) => <li>{h.data.text}</li>)}
+      </ul>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-lg font-semibold uppercase tracking-wide text-slate-700">Industry Positions</h2>
+      <div class="mt-2 divide-y divide-slate-100">
+        {byType("industry").map((a) => (
+          <EntryRow dateRange={a.data.dateRange} title={a.data.title} institution={a.data.institution} location={a.data.location} />
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-lg font-semibold uppercase tracking-wide text-slate-700">Academic Preparation</h2>
+      <div class="mt-2 divide-y divide-slate-100">
+        {education.filter((e) => e.data.category === "degree").map((e) => (
+          <EntryRow
+            dateRange={e.data.dateRange}
+            title={`${e.data.degree}, ${e.data.field ?? ""}`}
+            institution={e.data.institution}
+            location={e.data.location}
+            detail={e.data.thesisTitle}
+            detailLabel={e.data.thesisType}
+          />
+        ))}
+      </div>
+      <h3 class="mt-4 text-sm font-semibold uppercase tracking-wide text-slate-500">Lifelong Learning</h3>
+      <div class="mt-2 divide-y divide-slate-100">
+        {education.filter((e) => e.data.category === "lifelong-learning").map((e) => (
+          <EntryRow
+            dateRange={e.data.dateRange}
+            title={`${e.data.degree}, ${e.data.field ?? ""}`}
+            institution={e.data.institution}
+            location={e.data.location}
+          />
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-lg font-semibold uppercase tracking-wide text-slate-700">Academic Recognition</h2>
+      <div class="mt-2 divide-y divide-slate-100">
+        {recognition.map((r) => (
+          <EntryRow dateRange={r.data.year} title={r.data.award} institution={r.data.institution} location={r.data.location} />
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-lg font-semibold uppercase tracking-wide text-slate-700">Student Research Experiences/Internships</h2>
+      <div class="mt-2 divide-y divide-slate-100">
+        {byType("internship").map((a) => (
+          <EntryRow dateRange={a.data.dateRange} title={a.data.title} institution={a.data.institution} location={a.data.location} />
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-lg font-semibold uppercase tracking-wide text-slate-700">Funding</h2>
+      {fundingCategories.map(({ key, label }) => (
+        <div class="mt-4">
+          <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-500">{label}</h3>
+          <div class="mt-2 divide-y divide-slate-100">
+            {funding.filter((f) => f.data.category === key).map((f) => (
+              <LineItem
+                label={f.data.sponsorOrGrantId}
+                dateRange={f.data.dateRange}
+                value={[f.data.role, f.data.title, f.data.amount].filter(Boolean).join(", ")}
+              />
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-lg font-semibold uppercase tracking-wide text-slate-700">Publication Summary</h2>
+      <div class="mt-2 flex flex-wrap gap-x-8 gap-y-1 text-sm text-slate-700">
+        {scholar && (
+          <>
+            <span>Citations: {scholar.data.citations} on <a href={scholar.data.scholarUrl}>Google Scholar</a></span>
+            <span>h-index: {scholar.data.hIndex}</span>
+            <span>i10-index: {scholar.data.i10Index}</span>
+          </>
+        )}
+        {github && (
+          <span>
+            GitHub: {github.data.contributions} contributions during {github.data.startYear}–{github.data.endYear} at
+            <a href={`https://github.com/${github.data.username}`}> {github.data.username}</a>
+          </span>
+        )}
+      </div>
+
+      {pubTypeGroups.map(({ key, label }) => {
+        const entries = publications.filter((p) => p.data.pubType === key);
+        return (
+          entries.length > 0 && (
+            <div class="mt-6">
+              <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-500">{label}</h3>
+              <div class="mt-2 divide-y divide-slate-100">
+                {entries.map((p) => <PublicationEntry pub={p.data} />)}
+              </div>
+            </div>
+          )
+        );
+      })}
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-lg font-semibold uppercase tracking-wide text-slate-700">
+        PhD Dissertation and MS Thesis Supervision and Co-Supervision
+      </h2>
+      {studentGroups.map(({ key, label }) => (
+        <div class="mt-4">
+          <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-500">{label}</h3>
+          <div class="mt-2 divide-y divide-slate-100">
+            {students.filter((s) => s.data.group === key).map((s) => (
+              <LineItem
+                label={`${s.data.name}, ${s.data.degree} (${s.data.role})`}
+                value={s.data.institution}
+                dateRange={s.data.dateRange}
+              />
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-lg font-semibold uppercase tracking-wide text-slate-700">Service</h2>
+      {serviceCategories.map(({ key, label }) => (
+        <div class="mt-4">
+          <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-500">{label}</h3>
+          <ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-700">
+            {service.filter((s) => s.data.category === key).map((s) => (
+              <li>
+                <span class="italic">{s.data.role}</span>, {s.data.body}
+                {s.data.dateRange && `, ${s.data.dateRange}`}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+
+    <section class="mt-8 pb-16">
+      <h2 class="text-lg font-semibold uppercase tracking-wide text-slate-700">Media Appearances</h2>
+      {mediaGroups.map(({ key, label }) => (
+        <div class="mt-4">
+          <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-500">{label}</h3>
+          <ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-700">
+            {media.filter((m) => m.data.medium === key).map((m) => (
+              <li>
+                {m.data.outlet}, {m.data.url ? <a href={m.data.url} class="hover:underline">{m.data.title}</a> : m.data.title}, {m.data.date}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+  </main>
+</BaseLayout>

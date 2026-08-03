@@ -1,0 +1,128 @@
+# Hand-transcribed. Source: ../cv/data/40-media.tex
+- id: abc7-robots-stem
+  order: 1
+  outlet: ABC-7 Chicago
+  title: Robots Inspiring STEM Education in Schools
+  url: http://abc7chicago.com/education/robots-inspiring-stem-education-in-schools/1555046/
+  date: "15 October 2016"
+  medium: television
+
+- id: wttw-facebook-data
+  order: 2
+  outlet: WTTW Chicago Tonight
+  title: "Reports: Facebook Users' Personal Data Exploited to Help Trump's Campaign"
+  url: https://chicagotonight.wttw.com/2018/03/20/reports-facebook-users-personal-data-exploited-help-trump-s-campaign
+  date: "20 March 2018"
+  medium: television
+
+- id: venturebeat-ai-hollywood
+  order: 3
+  outlet: VentureBeat
+  title: How AI is Bringing Hollywood to Life
+  url: http://venturebeat.com/2016/12/09/how-ai-is-bringing-hollywood-to-life/
+  date: "9 December 2016"
+  medium: print
+
+- id: edtech-digest-pythagoras
+  order: 4
+  outlet: EdTech Digest
+  title: Beyond Pythagoras
+  url: https://edtechdigest.wordpress.com/2016/12/16/beyond-pythagoras/
+  date: "16 December 2016"
+  medium: print
+
+- id: robotics-tomorrow-101
+  order: 5
+  outlet: Robotics Tomorrow
+  title: Robotics 101 at Loyola University Chicago
+  url: http://www.roboticstomorrow.com/article/2016/10/robotics-101-at-loyola-university/9027
+  date: "3 November 2016"
+  medium: print
+
+- id: sc-media-vulnerabilities
+  order: 6
+  outlet: SC Media
+  title: Vulnerabilities Exist but so do Safeguards
+  url: https://www.scmagazine.com/vulnerabilities-exist-but-so-do-safeguards/article/571902/
+  date: "9 November 2016"
+  medium: print
+
+- id: zdnet-ai-ethical
+  order: 7
+  outlet: ZDNet
+  title: Can AI really be ethical and unbiased?
+  url: http://www.zdnet.com/article/can-ai-really-be-ethical-and-unbiased/
+  date: "16 October 2016"
+  medium: print
+
+- id: philly-inquirer-transistors
+  order: 8
+  outlet: Philadelphia Inquirer
+  title: Penn physicists honored for work that could take heat out of computing
+  url: http://articles.philly.com/2015-04-24/news/61462592_1_insulators-transistors-computer
+  date: "24 April 2015"
+  medium: print
+
+- id: itworld-dream-team
+  order: 9
+  outlet: IT World
+  title: Meet the IT Dream Team
+  url: http://www.itworld.com/article/2902274/who-do-you-want-on-your-it-dream-team.html
+  date: "26 March 2015"
+  medium: print
+
+- id: computer-weekly-year-of-code
+  order: 10
+  outlet: Computer Weekly
+  title: If the Year of Code has got it wrong, how should we each kids to code?
+  url: http://goo.gl/1idy5U
+  date: "17 February 2014"
+  medium: print
+
+- id: dell-techpageone-iot
+  order: 11
+  outlet: Dell TechPageOne
+  title: Internet of Things will require data centers of all sizes
+  url: http://goo.gl/336n7s
+  date: "24 June 2014"
+  medium: print
+
+- id: forbes-iot-network
+  order: 12
+  outlet: Forbes
+  title: Does the Internet of Things Need Its Own Network?
+  url: http://goo.gl/MuWGvY
+  date: "3 July 2014"
+  medium: print
+
+- id: telegraph-uk-google-glass
+  order: 13
+  outlet: The Telegraph UK
+  title: "Google Glass: the next big gaming platform?"
+  url: http://goo.gl/SuYMpy
+  date: "12 August 2013"
+  medium: print
+
+- id: times-of-london-humour
+  order: 14
+  outlet: Times of London
+  title: Computers with a Sense of Humour?
+  url: http://goo.gl/ToFpOC
+  date: "4 September 2013"
+  medium: print
+
+- id: fast-company-social-living-room
+  order: 15
+  outlet: Fast Company Co.Create
+  title: "The Social Living Room: How Nintendo's Wii evolutionized Gaming and What it Means for the Future of Consoles"
+  url: http://goo.gl/1dIvDp
+  date: "7 June 2012"
+  medium: print
+
+- id: acm-ieee-sc12-release
+  order: 16
+  outlet: ACM/IEEE Supercomputing 2012
+  title: IEEE News Release for Supercomputing 12
+  url: http://goo.gl/309AQp
+  date: "12 November 2012"
+  medium: print

@@ -1,1 +1,26 @@
 @import "tailwindcss";
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  @page {
+    size: letter;
+    margin: 0.6in;
+  }
+
+  body {
+    font-size: 10.5pt;
+  }
+
+  h2,
+  h3 {
+    break-after: avoid-page;
+    break-inside: avoid-page;
+  }
+}
+
+.avoid-break {
+  break-inside: avoid;
+}

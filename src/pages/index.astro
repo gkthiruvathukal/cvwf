@@ -1,17 +1,62 @@
 ---
+import { getCollection, getEntry } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
+const person = (await getEntry("personal", "george-thiruvathukal"))!.data;
+const scholar = await getEntry("bibliometrics", "scholar");
+const github = await getEntry("bibliometrics", "github");
+const publications = await getCollection("publications");
+const currentAppointment = (await getCollection("appointments")).find(
+  (a) => a.id === "chair-loyola",
+);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title={`${person.firstName} ${person.lastName} — CV`}>
+  <main class="mx-auto max-w-4xl px-6 py-16">
+    <h1 class="text-4xl font-bold tracking-tight">{person.firstName} {person.lastName}</h1>
+    <p class="mt-2 text-lg text-slate-600">
+      {currentAppointment?.data.title ?? person.title}
+    </p>
+    <p class="mt-1 text-slate-600">{person.address.institution}</p>
+
+    <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-600">
+      <a href={`mailto:${person.email}`} class="hover:text-slate-900 hover:underline">{person.email}</a>
+      <a href={person.homepage} class="hover:text-slate-900 hover:underline">{person.homepage?.replace(/^https?:\/\//, "")}</a>
+      {person.social.map((s) => (
+        <a href={s.url} class="hover:text-slate-900 hover:underline">{s.platform}</a>
+      ))}
+    </div>
+
+    <div class="mt-12 grid grid-cols-3 gap-4 border-y border-slate-200 py-6">
+      <div>
+        <div class="text-2xl font-semibold">{publications.length}</div>
+        <div class="text-sm text-slate-600">Publications</div>
+      </div>
+      {scholar && (
+        <div>
+          <div class="text-2xl font-semibold">{scholar.data.citations}</div>
+          <div class="text-sm text-slate-600">
+            Citations (h-index {scholar.data.hIndex})
+          </div>
+        </div>
+      )}
+      {github && (
+        <div>
+          <div class="text-2xl font-semibold">{github.data.contributions}</div>
+          <div class="text-sm text-slate-600">
+            GitHub contributions since {github.data.startYear}
+          </div>
+        </div>
+      )}
+    </div>
+
+    <div class="mt-10 flex gap-4">
+      <a href="/publications/" class="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700">
+        Browse publications
+      </a>
+      <a href="/cv/" class="rounded-md border border-slate-300 px-4 py-2 text-sm font-medium hover:bg-slate-50">
+        View full CV
+      </a>
+    </div>
+  </main>
+</BaseLayout>

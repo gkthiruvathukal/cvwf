@@ -1,0 +1,72 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PublicationEntry from "../../components/PublicationEntry.astro";
+
+const publications = (await getCollection("publications")).sort(
+  (a, b) => (b.data.date > a.data.date ? 1 : -1),
+);
+
+const pubTypeLabels: Record<string, string> = {
+  book: "Books",
+  inproceedings: "Conference Papers",
+  incollection: "Book Chapters",
+  journal: "Journal Articles",
+  magazine: "Magazine Articles",
+  techreport: "Technical Reports",
+};
+
+const counts = Object.fromEntries(
+  Object.keys(pubTypeLabels).map((type) => [
+    type,
+    publications.filter((p) => p.data.pubType === type).length,
+  ]),
+);
+---
+
+<BaseLayout title="Publications — George K. Thiruvathukal">
+  <main class="mx-auto max-w-4xl px-6 py-16">
+    <h1 class="text-2xl font-bold tracking-tight">Publications</h1>
+    <p class="mt-1 text-sm text-slate-600">{publications.length} entries, sourced from Zotero.</p>
+
+    <div class="no-print mt-6 flex flex-wrap gap-2">
+      <button data-filter="all" class="filter-btn rounded-full bg-slate-900 px-3 py-1 text-xs font-medium text-white">
+        All ({publications.length})
+      </button>
+      {Object.entries(pubTypeLabels).map(([type, label]) => (
+        counts[type] > 0 && (
+          <button data-filter={type} class="filter-btn rounded-full border border-slate-300 px-3 py-1 text-xs font-medium hover:bg-slate-50">
+            {label} ({counts[type]})
+          </button>
+        )
+      ))}
+    </div>
+
+    <div class="mt-8 divide-y divide-slate-200">
+      {publications.map((pub) => (
+        <div data-pubtype={pub.data.pubType}>
+          <PublicationEntry pub={pub.data} />
+        </div>
+      ))}
+    </div>
+  </main>
+
+  <script>
+    const buttons = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+    const rows = document.querySelectorAll<HTMLElement>("[data-pubtype]");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.filter;
+        rows.forEach((row) => {
+          row.style.display = filter === "all" || row.dataset.pubtype === filter ? "" : "none";
+        });
+        buttons.forEach((b) => {
+          b.classList.toggle("bg-slate-900", b === button);
+          b.classList.toggle("text-white", b === button);
+          b.classList.toggle("border-slate-300", b !== button);
+        });
+      });
+    });
+  </script>
+</BaseLayout>

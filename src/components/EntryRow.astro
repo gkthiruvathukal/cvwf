@@ -1,0 +1,34 @@
+---
+// Shared row shape for date-ranged entries (education, appointments, recognition):
+// a date on the left, title/institution/location on the right, optional detail below.
+interface Props {
+  dateRange: string;
+  title: string;
+  institution?: string;
+  location?: string;
+  detail?: string;
+  detailLabel?: string;
+}
+
+const { dateRange, title, institution, location, detail, detailLabel } = Astro.props;
+---
+
+<div class="avoid-break flex gap-4 py-2">
+  <div class="w-32 shrink-0 text-sm text-slate-500">{dateRange}</div>
+  <div class="flex-1">
+    <div class="font-medium">{title}</div>
+    {(institution || location) && (
+      <div class="text-sm text-slate-600">
+        {institution}
+        {institution && location && ", "}
+        {location}
+      </div>
+    )}
+    {detail && (
+      <div class="mt-1 text-sm text-slate-600">
+        {detailLabel && <span class="font-medium">{detailLabel}: </span>}
+        <em>{detail}</em>
+      </div>
+    )}
+  </div>
+</div>

@@ -1,0 +1,382 @@
+# Hand-transcribed. Source: ../cv/data/35-service.tex
+- id: university-faculty-handbook-committee
+  order: 1
+  role: Member
+  body: Faculty Council, Faculty Handbook Committee
+  dateRange: "2020–2022"
+  category: university
+
+- id: university-neuroscience-search
+  order: 2
+  role: Member
+  body: Neuroscience Search Committee
+  dateRange: "2020"
+  category: university
+
+- id: university-cs-search-chair
+  order: 3
+  role: Chair
+  body: "Search Committee, Computer Science"
+  dateRange: "2013"
+  category: university
+
+- id: university-faculty-council
+  order: 4
+  role: Member
+  body: Faculty Council
+  dateRange: "2012–2014"
+  category: university
+
+- id: university-dh-search
+  order: 5
+  role: Member
+  body: "Search Committee, Non-Tenure Track Position in Digital Humanities"
+  dateRange: "2010"
+  category: university
+
+- id: university-comm-search
+  order: 6
+  role: Member
+  body: "Search Committee, School of Communication"
+  dateRange: "2009"
+  category: university
+
+- id: university-graduate-council-chair
+  order: 7
+  role: Chair
+  body: Graduate Council
+  dateRange: "2006"
+  category: university
+
+- id: dept-cs-labs-director
+  order: 8
+  role: Director
+  body: Computer Science Labs and Infrastructure
+  dateRange: "2003–Present"
+  category: departmental
+
+- id: dept-foss-advisor
+  order: 9
+  role: Faculty Advisor
+  body: Free/Open Source Software at Loyola Student Organization
+  dateRange: "2008–2010"
+  category: departmental
+
+- id: dept-lutech-advisor
+  order: 10
+  role: Faculty Advisor
+  body: Loyola Technology and Entrepreneurship Student Organization (LuTech)
+  dateRange: "2015–2017"
+  category: departmental
+
+- id: dept-undergrad-curriculum-chair
+  order: 11
+  role: Chair
+  body: Undergraduate Curriculum Committee
+  category: departmental
+
+- id: dept-faculty-eval-cochair
+  order: 12
+  role: Co-Chair
+  body: Faculty Evaluation and Appraisal Committee
+  dateRange: "AY 2012–2018"
+  category: departmental
+
+- id: dept-undergrad-director-temp
+  order: 13
+  role: "Undergraduate Program Director, Temporary Assignment"
+  body: Department of Computer Science
+  dateRange: "2004"
+  category: departmental
+
+- id: dept-graduate-director
+  order: 14
+  role: Graduate Program Director
+  body: Department of Computer Science
+  dateRange: "2004–2006"
+  category: departmental
+
+- id: panel-nsf-cise
+  order: 15
+  role: Panelist
+  body: "National Science Foundation, CISE, Cyberinfrastructure, and Cyber-Physical Systems"
+  category: panel
+
+- id: panel-neh-odh
+  order: 16
+  role: Panelist
+  body: "National Endowment for the Humanities, Office of Digital Humanities"
+  category: panel
+
+- id: panel-nih
+  order: 17
+  role: Panelist
+  body: "National Institutes for Health, Multiscale and Cross-Agency R01/U01 Programs"
+  category: panel
+
+- id: conf-eduhpc-2023
+  order: 18
+  role: Vice Chair
+  body: EduHPC 2023
+  category: conference-committee
+
+- id: conf-rie-2021
+  order: 19
+  role: Program Committee
+  body: Robotics in Education 2021
+  category: conference-committee
+
+- id: conf-rie-2020
+  order: 20
+  role: Program Committee
+  body: Robotics in Education 2020
+  category: conference-committee
+
+- id: conf-rie-2019
+  order: 21
+  role: Program Committee
+  body: Robotics in Education 2019
+  category: conference-committee
+
+- id: conf-ccdhcs-2018
+  order: 22
+  role: Program Committee
+  body: Chicago Colloquium on Digital Humanities and Computer Science 2018
+  category: conference-committee
+
+- id: conf-se4science-2018
+  order: 23
+  role: Program Committee
+  body: SE4Science Workshop 2018
+  category: conference-committee
+
+- id: conf-se4science-2017
+  order: 24
+  role: Program Committee
+  body: SE4Science Workshop 2017
+  category: conference-committee
+
+- id: conf-se4science-2016
+  order: 25
+  role: Program Committee
+  body: SE4Science Workshop 2016
+  category: conference-committee
+
+- id: conf-sigcse-2018
+  order: 26
+  role: Program Committee
+  body: "SIGCSE, CS Education Research Track"
+  dateRange: "2018"
+  category: conference-committee
+
+- id: conf-bcd-2019
+  order: 27
+  role: Program Committee
+  body: "The 4th International Conference on Big Data, Cloud Computing, and Data Science Engineering (BCD 2019)"
+  category: conference-committee
+
+- id: conf-respect-2019-cochair
+  order: 28
+  role: Co-General Chair
+  body: RESPECT 2019
+  category: conference-committee
+
+- id: conf-respect-2018-cochair
+  order: 29
+  role: Co-General Chair
+  body: RESPECT 2018
+  category: conference-committee
+
+- id: conf-pearc-2017
+  order: 30
+  role: Program Committee
+  body: "PEARC 2017 Workforce, Diversity, and Evaluation and Software and Data Tracks"
+  dateRange: "2017"
+  category: conference-committee
+
+- id: conf-respect-2016-tutorials
+  order: 31
+  role: Tutorials Chair
+  body: RESPECT 2016
+  category: conference-committee
+
+- id: conf-respect-2015-coprogram
+  order: 32
+  role: Co-Program Chair
+  body: RESPECT 2015
+  category: conference-committee
+
+- id: conf-sbac-pad-2013
+  order: 33
+  role: Program Committee
+  body: "SBAC-PAD 2013 Applications and Algorithms Track"
+  dateRange: "2013"
+  category: conference-committee
+
+- id: conf-sbac-pad-25th
+  order: 34
+  role: Program Committee Member
+  body: The 25th International Symposium on Computer Architecture and High Performance Computing
+  category: conference-committee
+
+- id: conf-ccdhcs-2012
+  order: 35
+  role: Program Committee
+  body: Chicago Colloquium on Digital Humanities in Computer Science 2012
+  category: conference-committee
+
+- id: conf-ccdhcs-2011-chair
+  order: 36
+  role: Program Chair
+  body: Chicago Colloquium on Digital Humanities in Computer Science 2011
+  category: conference-committee
+
+- id: conf-cgc-2011
+  order: 37
+  role: Program Committee
+  body: International Conference on Cloud and Green Computing (CGC2011)
+  category: conference-committee
+
+- id: conf-icsoft-2009-2010
+  order: 38
+  role: Program Committee Member
+  body: ICSoft 2009 and 2010
+  category: conference-committee
+
+- id: conf-ieee-cloud-2010
+  order: 39
+  role: Program Committee Member
+  body: IEEE Cloud Computing 2010
+  category: conference-committee
+
+- id: conf-acm-sdoc-2005
+  order: 40
+  role: Organizing Committee Member
+  body: ACM Symposium on Structured Document Engineering 2005
+  category: conference-committee
+
+- id: conf-ipdps-java-hpc
+  order: 41
+  role: Program Committee Member
+  body: IPDPS Workshop on Java for High-Performance Computing
+  dateRange: "1999–2005"
+  category: conference-committee
+
+- id: conf-acm-sdoc-2002-2004
+  order: 42
+  role: Program Committee Member
+  body: ACM Symposium on Structured Document Engineering
+  dateRange: "2002–2004"
+  category: conference-committee
+
+- id: conf-hpcn-2001
+  order: 43
+  role: Program Committee Member
+  body: High-Performance Computing and Networking (HPCN)
+  dateRange: "2001"
+  category: conference-committee
+
+- id: conf-hpcn-java-cochair
+  order: 44
+  role: Co-Chair
+  body: High-Performance Computing and Networking (HPCN) Workshop on Java
+  dateRange: "2001"
+  category: conference-committee
+
+- id: conf-sc-2000
+  order: 45
+  role: Tutorials Program Committee
+  body: SC 2000
+  dateRange: "2000"
+  category: conference-committee
+
+- id: conf-acm-java-grande-1998
+  order: 46
+  role: Program Committee and Registration Chair
+  body: ACM Java Grande
+  dateRange: "1998"
+  category: conference-committee
+
+- id: editorial-josss-track-eic
+  order: 47
+  role: Track Editor in Chief
+  body: Data Science, Artificial Intelligence, and Machine Learning, Journal of Open Source Software
+  dateRange: "2022–2024"
+  category: editorial-board
+
+- id: editorial-josss-associate
+  order: 48
+  role: Associate Editor
+  body: Journal of Open Source Software
+  dateRange: "2019–2026"
+  category: editorial-board
+
+- id: editorial-ieee-computer-advisory
+  order: 49
+  role: Advisory Board
+  body: IEEE Computer
+  dateRange: "2020–Present"
+  category: editorial-board
+
+- id: editorial-ieee-cs-magazine-ops
+  order: 50
+  role: Magazine Operations Chair
+  body: IEEE Computer Society
+  dateRange: "2017–2018"
+  category: editorial-board
+
+- id: editorial-cise-reproducible-research
+  order: 51
+  role: Department and Track Editor
+  body: Reproducible Research, CISE Magazine
+  dateRange: "2017–Present"
+  category: editorial-board
+
+- id: editorial-cise-data
+  order: 52
+  role: Department and Track Editor
+  body: "Data*, CISE Magazine"
+  dateRange: "2017–2020"
+  category: editorial-board
+
+- id: editorial-computer-magazine-aeic
+  order: 53
+  role: Associate Editor in Chief
+  body: Computer Magazine
+  dateRange: "2016–2020"
+  category: editorial-board
+
+- id: editorial-cise-eic
+  order: 54
+  role: Editor in Chief
+  body: Computing in Science and Engineering
+  dateRange: "2013–2016"
+  category: editorial-board
+
+- id: editorial-ieee-computing-now
+  order: 55
+  role: Associate Editor
+  body: IEEE Computing Now
+  dateRange: "2008–2014"
+  category: editorial-board
+
+- id: editorial-cise-associate-2008
+  order: 56
+  role: Associate Editor
+  body: CISE Magazine
+  dateRange: "2008–2012"
+  category: editorial-board
+
+- id: editorial-cise-scientific-programming
+  order: 57
+  role: Department Editor
+  body: Scientific Programming, CISE Magazine
+  dateRange: "2004–2013"
+  category: editorial-board
+
+- id: editorial-java-grande-secretary
+  order: 58
+  role: Secretary General
+  body: Java Grande Forum
+  dateRange: "1997–2000"
+  category: editorial-board

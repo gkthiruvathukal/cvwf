@@ -1,0 +1,71 @@
+# Hand-transcribed. Source: ../cv/data/14-education.tex
+- id: phd-iit
+  order: 1
+  dateRange: "1990–1995"
+  degree: PhD
+  institution: Illinois Institute of Technology
+  location: Chicago, IL
+  field: Computer Science
+  thesisTitle: An Enhanced Actors Model and Programming Environment for Parallel and Distributed Processing
+  thesisType: Doctoral Dissertation
+  category: degree
+
+- id: ms-iit
+  order: 2
+  dateRange: "1988–1990"
+  degree: MS
+  institution: Illinois Institute of Technology
+  location: Chicago, IL
+  field: Computer Science
+  thesisTitle: "A Simulation of Demand-Driven Dataflow: Translation from Lucid into Message Driven Computing (MDC) Language (a software dataflow system for distributed multicore systems)"
+  thesisType: Masters Research
+  category: degree
+
+- id: bs-lewis-cs
+  order: 3
+  dateRange: "1986–1988"
+  degree: BS
+  institution: Lewis University
+  location: Romeoville, IL
+  field: Computer Science with Minor in Mathematics
+  thesisTitle: "Apt Data Structures Library for the C Programming Language and LL(k)-style Parser Generator and Data-Parallel C Compiler Code Generator"
+  thesisType: Undergraduate Research
+  category: degree
+
+- id: bs-lewis-physics
+  order: 4
+  dateRange: "1986–1988"
+  degree: BS
+  institution: Lewis University
+  location: Romeoville, IL
+  field: Physics with Minor in Mathematics
+  thesisTitle: Weak Interactions Physics Smart Acquisition System (WISAS) and Coupled Oscillations in One Dimension
+  thesisType: Undergraduate Research
+  category: degree
+
+- id: ba-loyola-music
+  order: 5
+  dateRange: "2026–Present"
+  degree: BA
+  institution: Loyola University Chicago
+  location: Chicago, IL
+  field: Music, Concentration in Jazz Studies (Piano)
+  category: lifelong-learning
+
+- id: non-degree-loyola-jazz
+  order: 6
+  dateRange: "2022–2025"
+  degree: Non-Degree
+  institution: Loyola University Chicago
+  location: Chicago, IL
+  field: Music, Jazz Piano and Combo
+  category: lifelong-learning
+
+- id: non-degree-old-town-school
+  order: 7
+  dateRange: "2018–2025"
+  degree: Non-degree
+  institution: Old Town School of Folk Music
+  location: Chicago, IL
+  field: Music, Jazz Performance Ensemble
+  category: lifelong-learning

@@ -1,0 +1,32 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-white text-slate-900 antialiased">
+    <header class="no-print border-b border-slate-200">
+      <nav class="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
+        <a href="/" class="font-semibold tracking-tight">George K. Thiruvathukal</a>
+        <div class="flex gap-6 text-sm text-slate-600">
+          <a href="/" class="hover:text-slate-900">Home</a>
+          <a href="/publications/" class="hover:text-slate-900">Publications</a>
+          <a href="/cv/" class="hover:text-slate-900">Full CV</a>
+          <a href="/cv-thiruvathukal.pdf" class="hover:text-slate-900">Download PDF</a>
+        </div>
+      </nav>
+    </header>
+    <slot />
+  </body>
+</html>

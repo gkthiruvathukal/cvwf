@@ -1,0 +1,41 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  pub: CollectionEntry<"publications">["data"];
+}
+
+const { pub } = Astro.props;
+
+const authorList =
+  pub.authors.length > 1
+    ? `${pub.authors.slice(0, -1).join(", ")}, and ${pub.authors.at(-1)}`
+    : pub.authors[0] ?? "";
+
+const primaryLink = pub.doi ? `https://doi.org/${pub.doi}` : pub.url;
+const venueParts = [pub.venue, pub.volume && `vol. ${pub.volume}`, pub.number && `no. ${pub.number}`, pub.pages && `pp. ${pub.pages}`]
+  .filter(Boolean)
+  .join(", ");
+---
+
+<div class="avoid-break py-2.5 text-sm">
+  <div class="text-slate-600">{authorList}</div>
+  <div class="font-medium">
+    {primaryLink ? (
+      <a href={primaryLink} target="_blank" rel="noopener noreferrer" class="hover:underline">
+        {pub.title}
+      </a>
+    ) : (
+      pub.title
+    )}
+  </div>
+  {venueParts && <div class="italic text-slate-600">{venueParts}, {pub.date}</div>}
+  {!venueParts && <div class="text-slate-600">{pub.date}</div>}
+  {(pub.arxiv || pub.code || pub.website) && (
+    <div class="mt-0.5 flex gap-3 text-xs text-slate-500">
+      {pub.arxiv && <a href={`https://arxiv.org/abs/${pub.arxiv}`} class="hover:underline">arXiv</a>}
+      {pub.code && <a href={pub.code} class="hover:underline">code</a>}
+      {pub.website && <a href={pub.website} class="hover:underline">project site</a>}
+    </div>
+  )}
+</div>

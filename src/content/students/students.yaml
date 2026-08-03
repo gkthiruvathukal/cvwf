@@ -1,0 +1,147 @@
+# Hand-transcribed. Source: ../cv/data/28-students.tex
+- id: matt-hyatt
+  order: 1
+  name: Matt Hyatt
+  degree: PhD
+  role: Supervisor
+  institution: Loyola University Chicago
+  dateRange: "2024–Present"
+  links:
+    - label: Google Scholar
+      url: https://scholar.google.com/citations?user=SXv-oqYAAAAJ&hl=en
+  group: loyola
+
+- id: jason-luce
+  order: 2
+  name: Jason Luce
+  degree: PhD
+  role: Supervisor
+  institution: Loyola University Chicago
+  dateRange: "2023–Present"
+  group: loyola
+
+- id: eric-pautsch
+  order: 3
+  name: Eric Pautsch
+  degree: PhD
+  role: Supervisor
+  institution: Loyola University Chicago
+  dateRange: "2024–Present"
+  group: loyola
+
+- id: nicholas-synovic
+  order: 4
+  name: Nicholas Synovic
+  degree: PhD
+  role: Supervisor
+  institution: Loyola University Chicago
+  dateRange: "2023–Present"
+  links:
+    - label: Google Scholar
+      url: https://scholar.google.com/citations?user=H3VvTOIAAAAJ&hl=en
+  group: loyola
+
+- id: dario-dematties
+  order: 5
+  name: Dario Dematties
+  degree: PhD
+  role: Co-Supervisor and Mentor
+  institution: University of Buenos Aires
+  dateRange: "2020–2023"
+  links:
+    - label: Google Scholar
+      url: https://scholar.google.com/citations?user=vpMd1bIAAAAJ&hl=en
+  group: other-institutions
+
+- id: nicholas-eliopoulous
+  order: 6
+  name: Nicholas Eliopoulous
+  degree: PhD
+  role: Co-Supervisor
+  institution: Purdue University
+  dateRange: "2020–Present"
+  links:
+    - label: Google Scholar
+      url: https://scholar.google.com/citations?user=GFNuJCQAAAAJ&hl=en
+  group: other-institutions
+
+- id: caleb-tung
+  order: 7
+  name: Caleb Tung
+  degree: PhD
+  role: Co-Supervisor
+  institution: Purdue University
+  dateRange: "2020–2024"
+  links:
+    - label: Web Site
+      url: https://calebtung.com
+  group: other-institutions
+
+- id: abhinav-goel
+  order: 8
+  name: Abhinav Goel
+  degree: PhD
+  role: Co-Supervisor
+  institution: Purdue University
+  dateRange: "2019–2023"
+  links:
+    - label: Google Scholar
+      url: https://scholar.google.com/citations?user=LvJvM7kAAAAJ&hl=en
+  group: other-institutions
+
+- id: wenxin-jiang
+  order: 9
+  name: Wenxin Jiang
+  degree: PhD
+  role: Mentor
+  institution: Purdue University
+  dateRange: "2019–Present"
+  links:
+    - label: Google Scholar
+      url: https://scholar.google.com/citations?user=skZNwokAAAAJ&hl=en
+  group: other-institutions
+
+- id: purvish-jajal
+  order: 10
+  name: Purvish Jajal
+  degree: PhD
+  role: Co-Supervisor
+  institution: Purdue University
+  dateRange: "2024–Present"
+  links:
+    - label: Google Scholar
+      url: https://scholar.google.com/citations?user=G43a2fwAAAAJ&hl=en
+  group: other-institutions
+
+- id: sarah-kaylor
+  order: 11
+  name: Sarah Kaylor
+  degree: MS
+  role: Supervisor
+  institution: Loyola University Chicago
+  dateRange: "2008–2012"
+  links:
+    - label: Google Scholar
+      url: https://scholar.google.com/citations?user=GkE3YPQAAAAJ&hl=en
+  group: masters-thesis
+
+- id: shilpika
+  order: 12
+  name: Shilpika
+  degree: MS
+  role: Supervisor
+  institution: Loyola University Chicago
+  dateRange: "TBD"
+  group: masters-thesis
+
+- id: jack-west
+  order: 13
+  name: Jack West
+  degree: MS
+  role: Co-Supervisor
+  institution: Loyola University Chicago
+  dateRange: "2021–2024"
+  links:
+    - label: Google Scholar
+      url: https://scholar.google.com/citations?user=SPvs1hsAAAAJ&hl=en
+  group: masters-thesis

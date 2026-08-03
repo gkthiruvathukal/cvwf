@@ -9,6 +9,7 @@ how those roles are rendered.
 """
 
 import json
+import os
 import re
 
 import bibtexparser
@@ -167,6 +168,7 @@ def main():
 
     all_records.sort(key=sort_key, reverse=True)
 
+    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     with open(OUTPUT_PATH, "w", encoding="utf-8") as out_file:
         json.dump(all_records, out_file, indent=2, ensure_ascii=False)
         out_file.write("\n")

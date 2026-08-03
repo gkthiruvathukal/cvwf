@@ -7,6 +7,7 @@ already present in that file rather than overwriting it.
 
 import argparse
 import json
+import os
 import re
 from datetime import date
 
@@ -63,6 +64,7 @@ def main():
         "endYear": args.last_year,
     }
 
+    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         json.dump(list(records.values()), f, indent=2)
         f.write("\n")

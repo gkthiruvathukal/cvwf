@@ -125,6 +125,7 @@ def main():
         "lastUpdated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
     }
 
+    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         json.dump(list(records.values()), f, indent=2)
         f.write("\n")

@@ -25,6 +25,10 @@ jobs:
       CV_GSCHOLAR_CITATIONS: ${{ vars.CV_GSCHOLAR_CITATIONS }}
       CV_GSCHOLAR_H_INDEX: ${{ vars.CV_GSCHOLAR_H_INDEX }}
       CV_GSCHOLAR_I10_INDEX: ${{ vars.CV_GSCHOLAR_I10_INDEX }}
+      # Without this, Astro's first-ever invocation in a fresh environment
+      # shows an interactive telemetry consent prompt that can hang waiting
+      # on stdin in a non-TTY CI shell instead of auto-skipping.
+      ASTRO_TELEMETRY_DISABLED: "1"
     steps:
       - name: Checkout
         uses: actions/checkout@v4

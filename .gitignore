@@ -23,8 +23,9 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# Claude Code local settings
+# Claude Code local settings and session state
 .claude/settings.local.json
+.claude/*.lock
 
 # Playwright
 test-results/

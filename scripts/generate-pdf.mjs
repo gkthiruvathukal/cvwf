@@ -70,6 +70,10 @@ async function main() {
       format: "Letter",
       printBackground: true,
       margin: { top: "0.6in", bottom: "0.6in", left: "0.6in", right: "0.6in" },
+      displayHeaderFooter: true,
+      headerTemplate: "<span></span>",
+      footerTemplate:
+        '<div style="width: 100%; font-size: 10px; text-align: center; color: #666; font-family: sans-serif;"><span class="pageNumber"></span></div>',
     });
     await browser.close();
 

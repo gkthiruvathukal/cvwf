@@ -144,9 +144,11 @@ const media = defineCollection({
 
 // Shared shape across all BibLaTeX-derived publication types. Most fields are
 // optional since availability varies by entry type (a book has no journaltitle,
-// a techreport has no isbn, etc). `authorAnnotations` is the raw `author+an`
-// passthrough (e.g. "3=myself;7=graduate") - parsing it into per-author roles
-// is deferred to a later phase.
+// a techreport has no isbn, etc). `authors[].role` is parsed from the
+// BibLaTeX `author+an` annotation (e.g. "3=myself;7=graduate") by
+// scripts/bib-to-json.py - null when an author has no annotation (most
+// external/senior co-authors). See src/config/author-highlight.ts for how
+// roles are rendered.
 const publicationSchema = z.object({
   id: z.string(),
   citeKey: z.string(),
@@ -159,8 +161,12 @@ const publicationSchema = z.object({
     "techreport",
   ]),
   title: z.string(),
-  authors: z.array(z.string()),
-  authorAnnotations: z.string().optional(),
+  authors: z.array(
+    z.object({
+      name: z.string(),
+      role: z.enum(["self", "graduate", "undergrad"]).nullable(),
+    }),
+  ),
   date: z.string(),
   venue: z.string().optional(),
   publisher: z.string().optional(),

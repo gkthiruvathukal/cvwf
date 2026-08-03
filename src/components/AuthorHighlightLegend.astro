@@ -1,0 +1,14 @@
+---
+import { authorHighlightEnabled, legendText } from "../config/author-highlight";
+
+interface Props {
+  publications: { data: { authors: { role: string | null }[] } }[];
+}
+
+const { publications } = Astro.props;
+const show =
+  authorHighlightEnabled &&
+  publications.some((p) => p.data.authors.some((a) => a.role));
+---
+
+{show && <p class="text-xs text-slate-500">{legendText}</p>}

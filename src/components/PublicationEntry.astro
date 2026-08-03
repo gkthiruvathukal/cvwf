@@ -1,16 +1,12 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import AuthorList from "./AuthorList.astro";
 
 interface Props {
   pub: CollectionEntry<"publications">["data"];
 }
 
 const { pub } = Astro.props;
-
-const authorList =
-  pub.authors.length > 1
-    ? `${pub.authors.slice(0, -1).join(", ")}, and ${pub.authors.at(-1)}`
-    : pub.authors[0] ?? "";
 
 const primaryLink = pub.doi ? `https://doi.org/${pub.doi}` : pub.url;
 const venueParts = [pub.venue, pub.volume && `vol. ${pub.volume}`, pub.number && `no. ${pub.number}`, pub.pages && `pp. ${pub.pages}`]
@@ -19,7 +15,7 @@ const venueParts = [pub.venue, pub.volume && `vol. ${pub.volume}`, pub.number &&
 ---
 
 <div class="avoid-break py-2.5 text-sm">
-  <div class="text-slate-600">{authorList}</div>
+  <div class="text-slate-600"><AuthorList authors={pub.authors} /></div>
   <div class="font-medium">
     {primaryLink ? (
       <a href={primaryLink} target="_blank" rel="noopener noreferrer" class="hover:underline">

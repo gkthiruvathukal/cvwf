@@ -1,0 +1,29 @@
+---
+import { authorHighlightEnabled, roleStyles, type AuthorRole } from "../config/author-highlight";
+
+interface Props {
+  authors: { name: string; role: AuthorRole | null }[];
+}
+
+const { authors } = Astro.props;
+
+function separatorAfter(index: number, total: number): string {
+  if (index === total - 1) return "";
+  if (total === 2) return " and ";
+  if (index === total - 2) return ", and ";
+  return ", ";
+}
+---
+
+{authors.map((author, i) => {
+  const style = authorHighlightEnabled && author.role ? roleStyles[author.role] : undefined;
+  return (
+    <>
+      <span class={style?.className}>
+        {author.name}
+        {style?.symbol && (style.superscript ? <sup>{style.symbol}</sup> : style.symbol)}
+      </span>
+      {separatorAfter(i, authors.length)}
+    </>
+  );
+})}

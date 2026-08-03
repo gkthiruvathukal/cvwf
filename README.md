@@ -75,7 +75,7 @@ Everything else in `src/content/` (personal info, education, appointments, chair
 | `students` | hand-authored | name, degree, role, institution, dateRange, links, `group: loyola \| other-institutions \| masters-thesis` |
 | `service` | hand-authored | role, body, dateRange, `category: university \| departmental \| panel \| conference-committee \| editorial-board` |
 | `media` | hand-authored | outlet, title, url, date, `medium: television \| print` |
-| `publications` | generated | full BibLaTeX field set, `pubType`, `citeKey`, `authorAnnotations` (raw `author+an` passthrough, not yet parsed) |
+| `publications` | generated | full BibLaTeX field set, `pubType`, `citeKey`, `authors: {name, role}[]` (`role` parsed from `author+an`: `self`/`graduate`/`undergrad`/`null`) |
 | `bibliometrics` | generated | one `scholar` record, one `github` record |
 
 Every hand-authored collection has an explicit `order: number` field. **This is required** — Astro's content layer does not guarantee `getCollection()` preserves file/array order, so pages sort by `order` explicitly. `publications` sorts by `date` instead, since it has one.
@@ -94,4 +94,6 @@ Every hand-authored collection has an explicit `order: number` field. **This is 
 
 Phase 1 (data pipeline + full site skeleton) is complete: all CV sections render with real data, publications flow from Zotero, bibliometrics from Scholar/GitHub, and the PDF export works with a "Download PDF" link in the site nav.
 
-See `TODO.md` for open data-quality issues and deferred Phase 2 work (visual design, `author+an` role highlighting, CI/CD, hosting).
+Author-role highlighting (bold George's own name, italic + †/\* for graduate/undergraduate co-authors) is implemented and fully configurable via `src/config/author-highlight.ts`.
+
+See `TODO.md` for open data-quality issues and remaining Phase 2 work (visual design, CI/CD, hosting).

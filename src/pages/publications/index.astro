@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PublicationEntry from "../../components/PublicationEntry.astro";
+import AuthorHighlightLegend from "../../components/AuthorHighlightLegend.astro";
 
 const publications = (await getCollection("publications")).sort(
   (a, b) => (b.data.date > a.data.date ? 1 : -1),
@@ -28,6 +29,9 @@ const counts = Object.fromEntries(
   <main class="mx-auto max-w-4xl px-6 py-16">
     <h1 class="text-2xl font-bold tracking-tight">Publications</h1>
     <p class="mt-1 text-sm text-slate-600">{publications.length} entries, sourced from Zotero.</p>
+    <div class="mt-1">
+      <AuthorHighlightLegend publications={publications} />
+    </div>
 
     <div class="no-print mt-6 flex flex-wrap gap-2">
       <button data-filter="all" class="filter-btn rounded-full bg-slate-900 px-3 py-1 text-xs font-medium text-white">

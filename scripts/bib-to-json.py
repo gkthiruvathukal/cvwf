@@ -3,8 +3,9 @@
 src/content/publications/all.json consumed by the Astro content collection.
 
 Each bib file maps to one pubType. `author+an` (per-author role annotation,
-e.g. "3=myself;7=graduate") is passed through as a raw string for now -
-parsing it into structured per-author roles is a later phase (see the plan).
+e.g. "3=myself;7=graduate", 1-based position into the author list) is parsed
+into a role per author - see ROLE_MAP and src/config/author-highlight.ts for
+how those roles are rendered.
 """
 
 import json
@@ -23,6 +24,8 @@ BIB_TYPE_MAP = {
 }
 
 OUTPUT_PATH = "src/content/publications/all.json"
+
+ROLE_MAP = {"myself": "self", "graduate": "graduate", "undergrad": "undergrad"}
 
 BRACE_RE = re.compile(r"[{}]")
 LATEX_ESCAPES = {
@@ -63,20 +66,41 @@ def to_bool(value):
     return value.strip() in ("1", "true", "True") if value else None
 
 
+def parse_author_roles(annotation):
+    """Parses 'author+an' (e.g. '1=graduate;4=myself') into {1-based position: role}."""
+    roles = {}
+    if not annotation:
+        return roles
+    for part in annotation.split(";"):
+        part = part.strip()
+        if "=" not in part:
+            continue
+        pos, raw_role = part.split("=", 1)
+        try:
+            position = int(pos.strip())
+        except ValueError:
+            continue
+        role = ROLE_MAP.get(raw_role.strip())
+        if role:
+            roles[position] = role
+    return roles
+
+
 def entry_to_record(entry, pub_type):
     cite_key = entry.get("ID")
+    names = parse_authors(entry.get("author", ""))
+    role_by_position = parse_author_roles(entry.get("author+an"))
     record = {
         "id": f"{pub_type}-{cite_key}",
         "citeKey": cite_key,
         "pubType": pub_type,
         "title": clean_latex(entry.get("title", "")),
-        "authors": parse_authors(entry.get("author", "")),
+        "authors": [
+            {"name": name, "role": role_by_position.get(i + 1)}
+            for i, name in enumerate(names)
+        ],
         "date": entry.get("date", ""),
     }
-
-    author_an = entry.get("author+an")
-    if author_an:
-        record["authorAnnotations"] = author_an
 
     venue = (
         entry.get("journaltitle")

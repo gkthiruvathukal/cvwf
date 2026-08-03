@@ -15,10 +15,11 @@
 
 ## Phase 2 — Features
 
-- [ ] Parse `author+an` (raw passthrough today as `authorAnnotations`) into structured per-author roles and render the highlighting (bold George's own name, italicize student co-authors) — explicitly requested, explicitly deferred until the basic pipeline was working.
 - [ ] CI/CD: a GitHub Actions workflow to re-run the fetch scripts (Zotero/Scholar/GitHub), rebuild, and redeploy on a schedule — mirrors what `../cv` already does.
 - [ ] Choose and set up a hosting/deployment target (GitHub Pages vs. Vercel vs. Netlify vs. Cloudflare Pages).
 
 ## Resolved
 
 - [x] ~~No way to download the PDF from the site~~ — a "Download PDF" link now sits in the nav (`BaseLayout.astro`), pointing to `/cv-thiruvathukal.pdf`.
+- [x] ~~Author annotations (`author+an`) not parsed or rendered~~ — `bib-to-json.py` now parses positions into per-author roles (`self`/`graduate`/`undergrad`); rendering (bold self, italic + †/\* for grad/undergrad) lives in `AuthorList.astro`, fully configurable via `src/config/author-highlight.ts`. A legend renders automatically wherever it's relevant (`AuthorHighlightLegend.astro`).
+- [x] ~~Author names with stray BibTeX brace artifacts~~ (e.g. `{Shilpika}`, `Konstantin} {Läufer`) — `parse_authors()` now runs each name through `clean_latex()`.

@@ -1,44 +1,75 @@
 ---
 import { getCollection, getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
 
 const person = (await getEntry("personal", "george-thiruvathukal"))!.data;
 const scholar = await getEntry("bibliometrics", "scholar");
 const github = await getEntry("bibliometrics", "github");
 const publications = await getCollection("publications");
-const currentAppointment = (await getCollection("appointments")).find(
-  (a) => a.id === "chair-loyola",
-);
 ---
 
 <BaseLayout title={`${person.firstName} ${person.lastName} — CV`}>
   <main class="mx-auto max-w-4xl px-6 py-16">
     <h1 class="text-4xl font-bold tracking-tight">{person.firstName} {person.lastName}</h1>
     <p class="mt-2 text-lg text-slate-600">
-      {currentAppointment?.data.title ?? person.title}
+      {person.roleSummary ?? person.title}
     </p>
     <p class="mt-1 text-slate-600">{person.address.institution}</p>
 
-    <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-600">
-      <a href={`mailto:${person.email}`} class="hover:text-slate-900 hover:underline">{person.email}</a>
-      <a href={person.homepage} class="hover:text-slate-900 hover:underline">{person.homepage?.replace(/^https?:\/\//, "")}</a>
+    <div class="mt-4 flex flex-wrap items-center gap-2">
+      <a href="https://github.com/gkthiruvathukal/cvwf/actions/workflows/deploy.yml">
+        <img
+          src="https://img.shields.io/github/actions/workflow/status/gkthiruvathukal/cvwf/deploy.yml?branch=main&label=build"
+          alt="Build status"
+          height="20"
+        />
+      </a>
+      <a href="https://github.com/gkthiruvathukal/cvwf/tags">
+        <img
+          src="https://img.shields.io/github/v/tag/gkthiruvathukal/cvwf?label=version&sort=semver"
+          alt="Latest version tag"
+          height="20"
+        />
+      </a>
+    </div>
+
+    <div class="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-600">
+      <a href={`mailto:${person.email}`} class="inline-flex items-center gap-1.5 hover:text-slate-900">
+        <Icon name="email" class="h-3.5 w-3.5 shrink-0" />{person.email}
+      </a>
+      {person.homepage && (
+        <a href={person.homepage} class="inline-flex items-center gap-1.5 hover:text-slate-900">
+          <Icon name="website" class="h-3.5 w-3.5 shrink-0" />{person.homepage.replace(/^https?:\/\//, "")}
+        </a>
+      )}
       {person.social.map((s) => (
-        <a href={s.url} class="hover:text-slate-900 hover:underline">{s.platform}</a>
+        <a href={s.url} class="inline-flex items-center gap-1.5 hover:text-slate-900">
+          <Icon name={s.platform} class="h-3.5 w-3.5 shrink-0" />{s.handle}
+        </a>
       ))}
     </div>
 
-    <div class="mt-12 grid grid-cols-3 gap-4 border-y border-slate-200 py-6">
+    <div class="mt-12 grid grid-cols-2 gap-4 border-y border-slate-200 py-6 sm:grid-cols-3 md:grid-cols-5">
       <div>
         <div class="text-2xl font-semibold">{publications.length}</div>
         <div class="text-sm text-slate-600">Publications</div>
       </div>
       {scholar && (
-        <div>
-          <div class="text-2xl font-semibold">{scholar.data.citations}</div>
-          <div class="text-sm text-slate-600">
-            Citations (h-index {scholar.data.hIndex})
+        <>
+          <div>
+            <div class="text-2xl font-semibold">{scholar.data.citations}</div>
+            <div class="text-sm text-slate-600">Citations</div>
           </div>
-        </div>
+          <div>
+            <div class="text-2xl font-semibold">{scholar.data.hIndex}</div>
+            <div class="text-sm text-slate-600">h-index</div>
+          </div>
+          <div>
+            <div class="text-2xl font-semibold">{scholar.data.i10Index}</div>
+            <div class="text-sm text-slate-600">i10-index</div>
+          </div>
+        </>
       )}
       {github && (
         <div>

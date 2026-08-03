@@ -1,0 +1,84 @@
+name: Deploy CV to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Weekly refresh of Zotero/Scholar/GitHub data even without a push.
+    - cron: "0 6 * * 1"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      CV_GSCHOLAR_ID: ${{ vars.CV_GSCHOLAR_ID }}
+      CV_GSCHOLAR_CITATIONS: ${{ vars.CV_GSCHOLAR_CITATIONS }}
+      CV_GSCHOLAR_H_INDEX: ${{ vars.CV_GSCHOLAR_H_INDEX }}
+      CV_GSCHOLAR_I10_INDEX: ${{ vars.CV_GSCHOLAR_I10_INDEX }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install Python dependencies
+        run: python3 -m pip install bibtexparser requests beautifulsoup4
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Fetch bibliography from Zotero
+        run: ./scripts/fetch-zotero.sh
+
+      - name: Sanitize bibliography
+        run: python3 scripts/sanitize-bib.py
+
+      - name: Convert bibliography to JSON
+        run: python3 scripts/bib-to-json.py
+
+      - name: Fetch Google Scholar bibliometrics
+        run: python3 scripts/fetch-scholar-metrics.py
+
+      - name: Fetch GitHub contribution stats
+        run: python3 scripts/fetch-github-stats.py --username gkthiruvathukal --first-year 2011
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Build site and generate PDF
+        run: npm run pdf
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,5 +1,9 @@
 # George K. Thiruvathukal — Web-First CV
 
+[![Deploy CV](https://github.com/gkthiruvathukal/cvwf/actions/workflows/deploy.yml/badge.svg)](https://github.com/gkthiruvathukal/cvwf/actions/workflows/deploy.yml)
+
+Live at [cv.gkt.sh](https://cv.gkt.sh).
+
 A web-first CV built with Astro, replacing the LaTeX-based build in `../cv`. The web page is the primary artifact; the PDF is generated *from* it via headless Chrome rather than the other way around. This exists because LaTeX is a print-era tool, and print is no longer the default output for a CV.
 
 Design rationale and the original implementation plan live at `/Users/gkt/.claude/plans/enchanted-dancing-finch.md`.
@@ -60,6 +64,8 @@ python3 scripts/fetch-scholar-metrics.py --profile Ls7yS0IAAAAJ   # -> src/conte
 python3 scripts/fetch-github-stats.py --username gkthiruvathukal --first-year 2011
 ```
 
+`fetch-scholar-metrics.py` is dual-mode: run locally like above, it scrapes Google Scholar live and pushes the result to GitHub repo variables (`gh variable set`, requires the `gh` CLI authenticated against this repo) so CI can reuse them. In CI (`GITHUB_ACTIONS=true`), it skips scraping - Google reliably blocks/CAPTCHAs requests from GitHub-hosted runner IPs - and reads those cached variables from the environment instead. **Run the local command at least once after creating the repo** to seed `CV_GSCHOLAR_ID`/`CV_GSCHOLAR_CITATIONS`/`CV_GSCHOLAR_H_INDEX`/`CV_GSCHOLAR_I10_INDEX`, or the first CI build will fail with a clear error telling you to do exactly that.
+
 Everything else in `src/content/` (personal info, education, appointments, chair highlights, recognition, funding, students, service, media) is hand-authored YAML, transcribed once from `../cv/data/*.tex`, and checked into git normally — it is the actual source of truth going forward, not a cache. Edit those files directly; there is no script that regenerates them.
 
 ## Content collections reference
@@ -89,6 +95,17 @@ Every hand-authored collection has an explicit `order: number` field. **This is 
 | `npm run preview` | Preview the production build locally |
 | `npm run pdf` | Build, then print `/cv/` to `dist/cv-thiruvathukal.pdf` via Playwright |
 | `npx astro check` | Type-check content schemas and pages |
+
+## Deployment
+
+Hosted on GitHub Pages at the custom domain `cv.gkt.sh`, deployed by `.github/workflows/deploy.yml` on every push to `main`, weekly on a schedule (to pick up new Zotero/Scholar/GitHub data even without a code change), and on manual trigger.
+
+One-time setup on GitHub, after the repo exists:
+
+1. **Settings → Pages → Build and deployment → Source**: set to "GitHub Actions" (not "Deploy from a branch").
+2. **Settings → Secrets and variables → Actions → Variables**: populate `CV_GSCHOLAR_ID`, `CV_GSCHOLAR_CITATIONS`, `CV_GSCHOLAR_H_INDEX`, `CV_GSCHOLAR_I10_INDEX` by running `python3 scripts/fetch-scholar-metrics.py --profile Ls7yS0IAAAAJ` locally once (see above) with the `gh` CLI authenticated against this repo.
+3. **DNS**: at whatever registrar/DNS host manages `gkt.sh`, add a `CNAME` record: `cv` → `gkthiruvathukal.github.io`.
+4. **Settings → Pages → Custom domain**: enter `cv.gkt.sh` (GitHub Pages also reads the `public/CNAME` file committed here, but setting it in the UI is what actually provisions the HTTPS certificate).
 
 ## Status
 

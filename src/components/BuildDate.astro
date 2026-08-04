@@ -1,0 +1,22 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+// Computed once per build (this is a static site, so there is no "request
+// time" — the timestamp astro build runs at is the last-build date for
+// every rendered page, including the one generate-pdf.mjs screenshots).
+const formatted = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+  hour: "numeric",
+  minute: "2-digit",
+  timeZoneName: "short",
+  timeZone: "America/Chicago",
+}).format(new Date());
+---
+
+<span class={className}>Last built {formatted}</span>

@@ -2,6 +2,7 @@
 import { getCollection, getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon.astro";
+import BuildDate from "../components/BuildDate.astro";
 
 const person = (await getEntry("personal", "george-thiruvathukal"))!.data;
 const scholar = await getEntry("bibliometrics", "scholar");
@@ -32,6 +33,7 @@ const publications = await getCollection("publications");
           height="20"
         />
       </a>
+      <BuildDate class="text-xs text-slate-400" />
     </div>
 
     <div class="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-600">

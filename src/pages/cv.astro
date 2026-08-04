@@ -6,6 +6,7 @@ import LineItem from "../components/LineItem.astro";
 import PublicationEntry from "../components/PublicationEntry.astro";
 import Icon from "../components/Icon.astro";
 import AuthorHighlightLegend from "../components/AuthorHighlightLegend.astro";
+import BuildDate from "../components/BuildDate.astro";
 
 const byOrder = <T extends { data: { order: number } }>(entries: T[]) =>
   entries.sort((a, b) => a.data.order - b.data.order);
@@ -99,6 +100,8 @@ const pubTypeGroups = [
           </a>
         ))}
       </div>
+
+      <BuildDate class="mt-1 block text-xs text-slate-400 print:text-center" />
     </header>
 
     <section class="mt-8">

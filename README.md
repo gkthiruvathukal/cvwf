@@ -10,6 +10,8 @@ Design rationale and the original implementation plan live at `/Users/gkt/.claud
 
 ## Architecture
 
+See [`ARCHITECTURE.md`](ARCHITECTURE.md) for a component/interaction diagram covering the full data pipeline, build, and deploy flow.
+
 - **[Astro](https://docs.astro.build)**, static output, islands architecture — ships ~0 client JS by default, which fits a content-heavy, mostly-static CV. The one bit of client JS is the publication type filter on `/publications/` (plain inline `<script>`, no framework).
 - **Content collections** (`src/content.config.ts`) are the single source of truth for every section of the CV. Pages read from them via `getCollection()`/`getEntry()`; nothing is hand-coded into a page template.
 - **Tailwind CSS v4** (`@tailwindcss/vite`) for styling. Current styling is intentionally minimal/clean, not the final visual design — see [Deferred work](#deferred-work).
@@ -33,7 +35,9 @@ Design rationale and the original implementation plan live at `/Users/gkt/.claud
 │   │   ├── publications/all.json        # GENERATED - not in git, see below
 │   │   └── bibliometrics/bibliometrics.json  # GENERATED - not in git, see below
 │   ├── layouts/BaseLayout.astro
-│   ├── components/              # EntryRow, LineItem, PublicationEntry
+│   ├── components/              # EntryRow, LineItem, PublicationEntry, AuthorList,
+│   │                             # AuthorHighlightLegend, Icon, BuildDate
+│   ├── config/author-highlight.ts  # co-author role highlighting styles (see AGENTS.md)
 │   └── pages/
 │       ├── index.astro          # landing page
 │       ├── publications/index.astro  # filterable publication list
@@ -116,7 +120,7 @@ Every hand-authored collection has an explicit `order: number` field. **This is 
 
 ## Deployment
 
-Hosted on GitHub Pages at the custom domain `cv.gkt.sh`, deployed by `.github/workflows/deploy.yml` on every push to `main`, weekly on a schedule (to pick up new Zotero/Scholar/GitHub data even without a code change), and on manual trigger.
+Hosted on GitHub Pages at the custom domain `cv.gkt.sh`, deployed by `.github/workflows/deploy.yml` on every push to `main`, on every `v*` tag push, weekly on a schedule (to pick up new Zotero/Scholar/GitHub data even without a code change), and on manual trigger.
 
 One-time setup on GitHub, after the repo exists:
 
@@ -131,4 +135,4 @@ Phase 1 (data pipeline + full site skeleton) is complete: all CV sections render
 
 Author-role highlighting (bold George's own name, italic + †/\* for graduate/undergraduate co-authors) is implemented and fully configurable via `src/config/author-highlight.ts`.
 
-See `TODO.md` for open data-quality issues and remaining Phase 2 work (visual design, CI/CD, hosting).
+CI/CD and hosting are also done: `deploy.yml` re-runs the full pipeline and redeploys on every push, tag, weekly schedule, and manual trigger (see [Deployment](#deployment)). The only open Phase 2 work is visual design. See `TODO.md` for that and open data-quality issues, and [`ARCHITECTURE.md`](ARCHITECTURE.md) for how all the pieces fit together.

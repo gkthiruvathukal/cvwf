@@ -13,13 +13,10 @@
 - [ ] The "futuristic" visual design system (motion, glass/gradient styling, dark mode) — current styling is intentionally minimal/clean, not final.
 - [ ] Reference/inspiration gathering for the visual direction hasn't happened yet.
 
-## Phase 2 — Features
-
-- [ ] CI/CD: a GitHub Actions workflow to re-run the fetch scripts (Zotero/Scholar/GitHub), rebuild, and redeploy on a schedule — mirrors what `../cv` already does.
-- [ ] Choose and set up a hosting/deployment target (GitHub Pages vs. Vercel vs. Netlify vs. Cloudflare Pages).
-
 ## Resolved
 
+- [x] ~~CI/CD: a GitHub Actions workflow to re-run the fetch scripts, rebuild, and redeploy on a schedule~~ — `.github/workflows/deploy.yml` re-runs the full Zotero/Scholar/GitHub pipeline, builds, and generates the PDF on every push to `main`, on `v*` tag pushes, weekly (cron), and on manual dispatch.
+- [x] ~~Choose and set up a hosting/deployment target~~ — GitHub Pages, deployed by `deploy.yml`, serving the custom domain `cv.gkt.sh`.
 - [x] ~~No way to download the PDF from the site~~ — a "Download PDF" link now sits in the nav (`BaseLayout.astro`), pointing to `/cv-thiruvathukal.pdf`.
 - [x] ~~Author annotations (`author+an`) not parsed or rendered~~ — `bib-to-json.py` now parses positions into per-author roles (`self`/`graduate`/`undergrad`); rendering (bold self, italic + †/\* for grad/undergrad) lives in `AuthorList.astro`, fully configurable via `src/config/author-highlight.ts`. A legend renders automatically wherever it's relevant (`AuthorHighlightLegend.astro`).
 - [x] ~~Author names with stray BibTeX brace artifacts~~ (e.g. `{Shilpika}`, `Konstantin} {Läufer`) — `parse_authors()` now runs each name through `clean_latex()`.

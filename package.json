@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "pdf": "node scripts/generate-pdf.mjs"
+    "pdf": "node scripts/generate-pdf.mjs",
+    "build:local": "bash scripts/build-local.sh"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",

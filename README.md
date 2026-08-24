@@ -43,6 +43,7 @@ See [`ARCHITECTURE.md`](ARCHITECTURE.md) for a component/interaction diagram cov
 │       ├── publications/index.astro  # filterable publication list
 │       └── cv.astro             # full CV, canonical section order - the PDF print target
 ├── scripts/
+│   ├── build-local.sh           # runs everything below, in order, then npm run pdf
 │   ├── fetch-zotero.sh          # Zotero groups -> bibliography/*-raw.bib
 │   ├── sanitize-bib.py          # promotes tex.* Extra-field annotations to top-level fields
 │   ├── bib-to-json.py           # bibliography/*.bib -> src/content/publications/all.json
@@ -55,7 +56,13 @@ See [`ARCHITECTURE.md`](ARCHITECTURE.md) for a component/interaction diagram cov
 
 ## Data pipeline
 
-Publication and bibliometric data is **not checked into git** — it's regenerated from Zotero, Google Scholar, and GitHub on demand (same pattern the LaTeX repo uses). From a fresh clone, run:
+Publication and bibliometric data is **not checked into git** — it's regenerated from Zotero, Google Scholar, and GitHub on demand (same pattern the LaTeX repo uses). From a fresh clone, run the whole pipeline plus build and PDF in one shot:
+
+```sh
+npm run build:local   # scripts/build-local.sh
+```
+
+That script (venv setup, all five fetch/convert steps, `npm install`, `npm run pdf`) requires the `gh` CLI authenticated against this repo, since `fetch-scholar-metrics.py` pushes scraped values to GitHub repo variables for CI to reuse later (see below). Read it top to bottom if you want to understand or run the pipeline step by step — it's the same commands laid out individually below:
 
 ```sh
 python3 -m venv .venv && source .venv/bin/activate
@@ -112,6 +119,7 @@ Every hand-authored collection has an explicit `order: number` field. **This is 
 
 | Command | Action |
 | :--- | :--- |
+| `npm run build:local` | Full pipeline from a fresh clone: venv + fetch/convert scripts, `npm install`, `npm run pdf` |
 | `npm run dev` | Local dev server at `localhost:4321` |
 | `npm run build` | Build the static site to `./dist/` |
 | `npm run preview` | Preview the production build locally |

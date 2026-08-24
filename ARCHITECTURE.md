@@ -91,13 +91,17 @@ flowchart TB
     run -.orchestrates.-> pipeline
     run -.orchestrates.-> pdfGen
 
+    buildLocal["scripts/build-local.sh\n(npm run build:local)"]
+    buildLocal -.orchestrates.-> pipeline
+    buildLocal -.orchestrates.-> pdfGen
+
     pagesHost["GitHub Pages\ncv.gkt.sh"]
     run --> pagesHost
 ```
 
 ## Walkthrough
 
-**Pipeline** (`scripts/`, gitignored outputs, re-run on demand or by CI): `fetch-zotero.sh` pulls raw BibLaTeX per Zotero group, `sanitize-bib.py` promotes `tex.*` Extra-field annotations (like `author+an`) to top-level fields, and `bib-to-json.py` merges everything into `src/content/publications/all.json` — parsing per-author roles along the way (see `AuthorList.astro` below). `fetch-scholar-metrics.py` and `fetch-github-stats.py` independently populate `src/content/bibliometrics/bibliometrics.json`. None of this runs at request time; it's a build-time data refresh.
+**Pipeline** (`scripts/`, gitignored outputs, re-run on demand or by CI): `fetch-zotero.sh` pulls raw BibLaTeX per Zotero group, `sanitize-bib.py` promotes `tex.*` Extra-field annotations (like `author+an`) to top-level fields, and `bib-to-json.py` merges everything into `src/content/publications/all.json` — parsing per-author roles along the way (see `AuthorList.astro` below). `fetch-scholar-metrics.py` and `fetch-github-stats.py` independently populate `src/content/bibliometrics/bibliometrics.json`. None of this runs at request time; it's a build-time data refresh. Locally, `scripts/build-local.sh` (`npm run build:local`) is the one-command version: venv + pip install, all five fetch/convert scripts in order, `npm install`, `npm run pdf` — the same steps CI's `run` job chains below, just runnable from a laptop.
 
 **Content layer** (`src/content.config.ts`): the single ingestion boundary. Every page reads through `getCollection()`/`getEntry()` against Zod-typed collections — generated JSON and hand-authored YAML are indistinguishable to a page once they're through this layer. This is also where the `order`-field sorting requirement lives (see `AGENTS.md` rule 2).
 

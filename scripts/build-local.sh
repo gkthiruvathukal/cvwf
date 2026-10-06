@@ -54,5 +54,8 @@ npm install
 echo "==> Building site and generating PDF"
 npm run pdf
 
-echo "==> Done. Site: dist/  PDF: dist/cv-thiruvathukal.pdf"
+echo "==> Generating Word version (requires pandoc)"
+npm run docx
+
+echo "==> Done. Site: dist/  PDF: dist/cv-thiruvathukal.pdf  Word: dist/cv-thiruvathukal.docx"
 echo "    Run 'npm run preview' to serve the built site locally."

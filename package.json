@@ -11,6 +11,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "pdf": "node scripts/generate-pdf.mjs",
+    "docx": "node scripts/generate-docx.mjs",
     "build:local": "bash scripts/build-local.sh"
   },
   "dependencies": {

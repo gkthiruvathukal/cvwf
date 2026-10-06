@@ -126,6 +126,7 @@ Every hand-authored collection has an explicit `order: number` field. **This is 
 | `npm run build` | Build the static site to `./dist/` |
 | `npm run preview` | Preview the production build locally |
 | `npm run pdf` | Build, then print `/cv/` to `dist/cv-thiruvathukal.pdf` via Playwright |
+| `npm run docx` | Convert the built `/cv/` page to `dist/cv-thiruvathukal.docx` with pandoc (run after `npm run pdf`; needs `pandoc`) |
 | `npx astro check` | Type-check content schemas and pages |
 
 ## Deployment
@@ -138,6 +139,15 @@ One-time setup on GitHub, after the repo exists:
 2. **Settings → Secrets and variables → Actions → Variables**: populate `CV_GSCHOLAR_ID`, `CV_GSCHOLAR_CITATIONS`, `CV_GSCHOLAR_H_INDEX`, `CV_GSCHOLAR_I10_INDEX` by running `.venv-scholar/bin/python scripts/fetch-scholar-metrics.py --profile Ls7yS0IAAAAJ` locally once (see above) with the `gh` CLI authenticated against this repo.
 3. **DNS**: at whatever registrar/DNS host manages `gkt.sh`, add a `CNAME` record: `cv` → `gkthiruvathukal.github.io`.
 4. **Settings → Pages → Custom domain**: enter `cv.gkt.sh` (GitHub Pages also reads the `public/CNAME` file committed here, but setting it in the UI is what actually provisions the HTTPS certificate).
+
+## Word version
+
+`dist/cv-thiruvathukal.docx` ("Download Word" in the nav) is derived from the same built `/cv/` page as the PDF, so the content, ordering and metrics always match. `scripts/generate-docx.mjs` runs [pandoc](https://pandoc.org) over `dist/cv/index.html` with two committed files in `templates/`:
+
+- **`templates/reference.docx`** - the Word styles (Title, Heading 1/2, body text, tables, hyperlinks, and the centered "CV Header" style used for the role/address/contact block). It starts from pandoc's default blue-headings/black-text template. **To restyle the output, open this file in Word and edit the styles** (Home → Styles → right-click → Modify), then save; the next build picks it up. No code changes needed.
+- **`templates/cv-docx.lua`** - a pandoc filter that translates the page's markup into Word constructs: date rows become a two-column table, publication entries become one tight paragraph each, the Impact Summary stat tiles become a table, bold/italic come from the page's `font-medium`/`italic` classes, and the nav and icons are dropped. If you change which Tailwind classes carry meaning in `cv.astro` or its components, update the filter to match.
+
+Requires `pandoc` (`brew install pandoc` locally; CI installs it via apt). Run order matters: `npm run pdf` then `npm run docx` - a later `astro build` clears `dist/`, which deletes both the PDF and the `.docx`. `npm run build:local` and CI do this in the right order.
 
 ## Versioning and the build badge
 

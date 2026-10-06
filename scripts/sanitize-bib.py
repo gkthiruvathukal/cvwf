@@ -9,21 +9,20 @@ import os
 import re
 
 import bibtexparser
-from bibtexparser.bparser import BibTexParser
+from bibtexparser.model import Field
 
 BIB_DIR = "bibliography"
 
 
 def expand_tex_fields(entry):
-    if "type" in entry:
-        del entry["type"]
+    entry.pop("type", None)
 
-    if "note" in entry:
-        note_entry = entry.pop("note")
+    note_entry = entry.pop("note", None)
+    if note_entry is not None:
         new_fields = {}
         new_note_lines = []
 
-        for line in note_entry.splitlines():
+        for line in note_entry.value.splitlines():
             tex_match = re.match(r"tex\.([\w\+\_\\]+):\s*(.*)", line)
             if tex_match:
                 key, value = tex_match.groups()
@@ -32,26 +31,25 @@ def expand_tex_fields(entry):
             else:
                 new_note_lines.append(line)
 
-        entry.update(new_fields)
+        for key, value in new_fields.items():
+            entry.set_field(Field(key, value))
         if new_note_lines:
-            entry["extra"] = "\n".join(new_note_lines)
+            entry.set_field(Field("extra", "\n".join(new_note_lines)))
 
     return entry
 
 
 def sanitize(input_path, output_path):
-    with open(input_path, "r", encoding="utf-8") as bib_file:
-        parser = BibTexParser(common_strings=True)
-        parser.ignore_nonstandard_types = False
-        bib_database = bibtexparser.load(bib_file, parser)
+    library = bibtexparser.parse_file(input_path)
+    if library.failed_blocks:
+        raise SystemExit(f"{input_path}: {len(library.failed_blocks)} block(s) failed to parse")
 
-    for entry in bib_database.entries:
+    for entry in library.entries:
         expand_tex_fields(entry)
 
-    with open(output_path, "w", encoding="utf-8") as bib_file:
-        bibtexparser.dump(bib_database, bib_file)
+    bibtexparser.write_file(output_path, library)
 
-    print(f"{input_path} -> {output_path} ({len(bib_database.entries)} entries)")
+    print(f"{input_path} -> {output_path} ({len(library.entries)} entries)")
 
 
 if __name__ == "__main__":

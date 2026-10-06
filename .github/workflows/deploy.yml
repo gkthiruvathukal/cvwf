@@ -46,7 +46,7 @@ jobs:
           python-version: "3.13"
 
       - name: Install Python dependencies
-        run: python3 -m pip install "bibtexparser<2" requests beautifulsoup4
+        run: python3 -m pip install "bibtexparser>=2" requests beautifulsoup4
 
       - name: Install npm dependencies
         run: npm ci

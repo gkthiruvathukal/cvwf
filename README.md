@@ -62,11 +62,11 @@ Publication and bibliometric data is **not checked into git** — it's regenerat
 npm run build:local   # scripts/build-local.sh
 ```
 
-That script (venv setup, all five fetch/convert steps, `npm install`, `npm run pdf`) requires the `gh` CLI authenticated against this repo, since `fetch-scholar-metrics.py` pushes scraped values to GitHub repo variables for CI to reuse later (see below). Read it top to bottom if you want to understand or run the pipeline step by step — it's the same commands laid out individually below:
+That script (venv setup, all five fetch/convert steps, `npm install`, `npm run pdf`) requires the `gh` CLI authenticated against this repo, since `fetch-scholar-metrics.py` pushes scraped values to GitHub repo variables for CI to reuse later (see below). Read it top to bottom if you want to understand or run the pipeline step by step — it's the same commands laid out individually below (Python 3.10+ is required for `bibtexparser` 2.x):
 
 ```sh
 python3 -m venv .venv && source .venv/bin/activate
-pip install "bibtexparser<2" scholarly requests beautifulsoup4 pyyaml
+pip install "bibtexparser>=2" scholarly requests beautifulsoup4 pyyaml
 
 ./scripts/fetch-zotero.sh                                        # -> bibliography/*-raw.bib
 python3 scripts/sanitize-bib.py                                  # -> bibliography/*.bib

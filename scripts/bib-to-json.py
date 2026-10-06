@@ -13,7 +13,6 @@ import os
 import re
 
 import bibtexparser
-from bibtexparser.bparser import BibTexParser
 
 BIB_TYPE_MAP = {
     "gkt-books.bib": "book",
@@ -87,6 +86,19 @@ def parse_author_roles(annotation):
     return roles
 
 
+def load_entries(path):
+    """Parses a .bib file into plain dicts: lowercased field names -> string values,
+    plus 'ID' for the citation key. Sorted by key (bibtexparser 1.x's writer did this
+    implicitly) so ties on year stay in a stable, reproducible order."""
+    library = bibtexparser.parse_file(path)
+    if library.failed_blocks:
+        raise SystemExit(f"{path}: {len(library.failed_blocks)} block(s) failed to parse")
+    return [
+        {"ID": e.key, **{f.key.lower(): f.value for f in e.fields}}
+        for e in sorted(library.entries, key=lambda e: e.key)
+    ]
+
+
 def entry_to_record(entry, pub_type):
     cite_key = entry.get("ID")
     names = parse_authors(entry.get("author", ""))
@@ -157,12 +169,7 @@ def main():
     all_records = []
     for filename, pub_type in BIB_TYPE_MAP.items():
         path = f"bibliography/{filename}"
-        with open(path, "r", encoding="utf-8") as bib_file:
-            parser = BibTexParser(common_strings=True)
-            parser.ignore_nonstandard_types = False
-            db = bibtexparser.load(bib_file, parser)
-
-        records = [entry_to_record(e, pub_type) for e in db.entries]
+        records = [entry_to_record(e, pub_type) for e in load_entries(path)]
         all_records.extend(records)
         print(f"{path}: {len(records)} entries -> pubType={pub_type}")
 

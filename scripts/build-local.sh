@@ -15,12 +15,15 @@ GITHUB_USERNAME="gkthiruvathukal"
 GITHUB_FIRST_YEAR="2011"
 
 echo "==> Python venv"
+# bibtexparser 2.x needs Python >= 3.10; on older Pythons pip silently installs 1.x.
+python3 -c 'import sys; sys.exit(sys.version_info < (3, 10))' \
+  || { echo "python3 >= 3.10 required (found $(python3 --version))" >&2; exit 1; }
 if [ ! -d .venv ]; then
   python3 -m venv .venv
 fi
 source .venv/bin/activate
 pip install --quiet --upgrade pip
-pip install --quiet "bibtexparser<2" scholarly requests beautifulsoup4 pyyaml
+pip install --quiet "bibtexparser>=2" scholarly requests beautifulsoup4 pyyaml
 
 echo "==> Fetching Zotero bibliography groups"
 ./scripts/fetch-zotero.sh

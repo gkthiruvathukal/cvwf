@@ -1,4 +1,6 @@
 ---
+import { execSync } from "node:child_process";
+
 interface Props {
   class?: string;
 }
@@ -17,6 +19,17 @@ const formatted = new Intl.DateTimeFormat("en-US", {
   timeZoneName: "short",
   timeZone: "America/Chicago",
 }).format(new Date());
+
+// Version is the latest git tag (e.g. "v0.5"); bump it by tagging a release.
+// Falls back to date-only if git or tags are unavailable (needs fetch-depth: 0 in CI).
+let version = "";
+try {
+  version = execSync("git describe --tags --abbrev=0", {
+    stdio: ["ignore", "pipe", "ignore"],
+  })
+    .toString()
+    .trim();
+} catch {}
 ---
 
-<span class={className}>Last built {formatted}</span>
+<span class={className}>{version ? `${version} built on` : "Built on"} {formatted}</span>

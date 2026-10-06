@@ -10,15 +10,24 @@ const { class: className } = Astro.props;
 // Computed once per build (this is a static site, so there is no "request
 // time" — the timestamp astro build runs at is the last-build date for
 // every rendered page, including the one generate-pdf.mjs screenshots).
-const formatted = new Intl.DateTimeFormat("en-US", {
+const now = new Date();
+const tz = "America/Chicago";
+const date = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+  timeZone: tz,
+}).format(now);
+// Full timestamp kept as a hover tooltip on the web pages.
+const full = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
   month: "short",
   day: "numeric",
   hour: "numeric",
   minute: "2-digit",
   timeZoneName: "short",
-  timeZone: "America/Chicago",
-}).format(new Date());
+  timeZone: tz,
+}).format(now);
 
 // Version is the latest git tag (e.g. "v0.5"); bump it by tagging a release.
 // Falls back to date-only if git or tags are unavailable (needs fetch-depth: 0 in CI).
@@ -32,4 +41,20 @@ try {
 } catch {}
 ---
 
-<span class={className}>{version ? `${version} built on` : "Built on"} {formatted}</span>
+<span class={className}>
+  <span
+    title={`${version ? `${version} · ` : ""}built ${full}`}
+    class="inline-flex items-stretch overflow-hidden rounded text-[11px] font-medium leading-none ring-1 ring-slate-200"
+  >
+    {version && (
+      <span class="inline-flex items-center gap-1 bg-slate-500 px-1.5 py-1 text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3 shrink-0" aria-hidden="true">
+          <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+          <line x1="7" y1="7" x2="7.01" y2="7"/>
+        </svg>
+        {version}
+      </span>
+    )}
+    <span class="inline-flex items-center bg-slate-100 px-1.5 py-1 text-slate-600">{date}</span>
+  </span>
+</span>

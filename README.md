@@ -66,12 +66,14 @@ That script (venv setup, all five fetch/convert steps, `npm install`, `npm run p
 
 ```sh
 python3 -m venv .venv && source .venv/bin/activate
-pip install "bibtexparser>=2" scholarly requests beautifulsoup4 pyyaml
+pip install "bibtexparser>=2" requests beautifulsoup4 pyyaml
 
 ./scripts/fetch-zotero.sh                                        # -> bibliography/*-raw.bib
 python3 scripts/sanitize-bib.py                                  # -> bibliography/*.bib
 python3 scripts/bib-to-json.py                                    # -> src/content/publications/all.json
-python3 scripts/fetch-scholar-metrics.py --profile Ls7yS0IAAAAJ   # -> src/content/bibliometrics/bibliometrics.json
+# scholarly needs bibtexparser 1.x, so use a separate venv for it:
+python3 -m venv .venv-scholar && .venv-scholar/bin/pip install scholarly "bibtexparser<2" requests pyyaml
+.venv-scholar/bin/python scripts/fetch-scholar-metrics.py --profile Ls7yS0IAAAAJ   # -> src/content/bibliometrics/bibliometrics.json
 python3 scripts/fetch-github-stats.py --username gkthiruvathukal --first-year 2011
 ```
 

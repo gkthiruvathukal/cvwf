@@ -23,7 +23,7 @@ if [ ! -d .venv ]; then
 fi
 source .venv/bin/activate
 pip install --quiet --upgrade pip
-pip install --quiet "bibtexparser>=2" scholarly requests beautifulsoup4 pyyaml
+pip install --quiet "bibtexparser>=2" requests beautifulsoup4 pyyaml
 
 echo "==> Fetching Zotero bibliography groups"
 ./scripts/fetch-zotero.sh
@@ -35,7 +35,13 @@ echo "==> Converting bibliography to publications content collection"
 python3 scripts/bib-to-json.py
 
 echo "==> Fetching Google Scholar metrics"
-python3 scripts/fetch-scholar-metrics.py --profile "$SCHOLAR_PROFILE"
+# scholarly still uses the bibtexparser 1.x API, so it gets its own venv.
+if [ ! -d .venv-scholar ]; then
+  python3 -m venv .venv-scholar
+fi
+.venv-scholar/bin/pip install --quiet --upgrade pip
+.venv-scholar/bin/pip install --quiet scholarly "bibtexparser<2" requests pyyaml
+.venv-scholar/bin/python scripts/fetch-scholar-metrics.py --profile "$SCHOLAR_PROFILE"
 
 echo "==> Fetching GitHub contribution stats"
 python3 scripts/fetch-github-stats.py --username "$GITHUB_USERNAME" --first-year "$GITHUB_FIRST_YEAR"

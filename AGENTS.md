@@ -18,6 +18,10 @@ This is George K. Thiruvathukal's web-first CV. Read `README.md` first for archi
 
 7. **The PDF is the web page, printed.** `scripts/generate-pdf.mjs` builds the site, serves `dist/`, and calls `page.pdf()` on the `/cv/` route with `@media print` CSS from `src/styles/global.css` (`.no-print` hides nav, `.avoid-break` prevents mid-entry page breaks). Do not create a second, separately-templated PDF layout — if the PDF needs to look different, change the print CSS or `cv.astro`, not a parallel render path. **Running a plain `astro build` after `npm run pdf` deletes the PDF** - `astro build` clears `dist/` from scratch and doesn't know the PDF exists (it's written there by a separate script, outside Astro's build graph). If you need both a fresh build and an up-to-date PDF, `npm run pdf` alone is sufficient (it builds internally); don't follow it with a plain `astro build`.
 
+8. **The version shown in every output is the latest git tag, rendered only by `BuildDate.astro`.** It appears on the landing page, `/cv/` (so also the PDF) and `/publications/`; don't hardcode a version, add a version to `package.json`, or render it anywhere else, or the outputs will drift. It's computed with `git describe --tags --abbrev=0` at build time, which is why `deploy.yml`'s checkout needs `fetch-depth: 0` (a shallow clone has no tags and the badge silently drops to date-only). To release: `git tag vX.Y && git push --tags`.
+
+9. **Scholar metrics are cached in CI, live only locally.** CI can't scrape Google, so it reads the `CV_GSCHOLAR_*` repo variables; they update only when `fetch-scholar-metrics.py` runs locally without `--no-push`. `scholarly` needs `bibtexparser` 1.x while the BibLaTeX scripts need 2.x (Python 3.10+), so the Scholar script runs in its own `.venv-scholar` - never install both into one environment.
+
 ## Development
 
 When starting the dev server, use background mode:

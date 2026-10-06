@@ -80,6 +80,15 @@ jobs:
       - name: Generate Word version
         run: npm run docx
 
+      - name: Stash PDF and Word files for the release job
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-files
+          path: |
+            dist/cv-thiruvathukal.pdf
+            dist/cv-thiruvathukal.docx
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -95,3 +104,34 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # On a v* tag push, attach the PDF and Word files (named with the version)
+  # to a GitHub Release, creating it if needed.
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download PDF and Word files
+        uses: actions/download-artifact@v4
+        with:
+          name: cv-files
+          path: files
+
+      - name: Create or update the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        working-directory: files
+        run: |
+          cp cv-thiruvathukal.pdf "cv-thiruvathukal-$TAG.pdf"
+          cp cv-thiruvathukal.docx "cv-thiruvathukal-$TAG.docx"
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$TAG" --repo "$GITHUB_REPOSITORY" --clobber \
+              "cv-thiruvathukal-$TAG.pdf" "cv-thiruvathukal-$TAG.docx"
+          else
+            gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --title "$TAG" --generate-notes \
+              "cv-thiruvathukal-$TAG.pdf" "cv-thiruvathukal-$TAG.docx"
+          fi

@@ -153,7 +153,7 @@ Requires `pandoc` (`brew install pandoc` locally; CI installs it via apt). Run o
 
 The CV's version is the **latest git tag** (e.g. `v0.5`), shown with the build date as a two-segment badge (tag icon + version | date) by `src/components/BuildDate.astro`. That one component is rendered on the landing page, `/cv/` (and therefore the PDF, which prints that page), and `/publications/`, so all outputs always agree. The badge's tooltip carries the full timestamp (Central time); the PDF shows version and date only.
 
-- **Cut a release:** `git tag v0.6 && git push --tags`. Pushing a `v*` tag triggers a deploy, and the next build of every output (site, PDF) shows the new version. Commits between tags don't change it; there is no version number in `package.json` to keep in sync.
+- **Cut a release:** `git tag v0.6 && git push --tags`. Pushing a `v*` tag triggers a deploy, and the next build of every output (site, PDF, Word) shows the new version. The same run also creates a **GitHub Release** for the tag with `cv-thiruvathukal-<tag>.pdf` and `cv-thiruvathukal-<tag>.docx` attached (the `release` job in `deploy.yml`), so every tagged version keeps a downloadable snapshot. Commits between tags don't change it; there is no version number in `package.json` to keep in sync.
 - **How it's computed:** `git describe --tags --abbrev=0` at build time. CI checks out with `fetch-depth: 0` so tags are present; without that the shallow clone has none and the badge silently falls back to date-only.
 - **Fallback:** if git or tags are unavailable (e.g. building from a tarball), only the date segment renders; the build never fails over it.
 

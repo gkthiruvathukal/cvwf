@@ -138,7 +138,8 @@ One-time setup on GitHub, after the repo exists:
 1. **Settings → Pages → Build and deployment → Source**: set to "GitHub Actions" (not "Deploy from a branch").
 2. **Settings → Secrets and variables → Actions → Variables**: populate `CV_GSCHOLAR_ID`, `CV_GSCHOLAR_CITATIONS`, `CV_GSCHOLAR_H_INDEX`, `CV_GSCHOLAR_I10_INDEX` by running `.venv-scholar/bin/python scripts/fetch-scholar-metrics.py --profile Ls7yS0IAAAAJ` locally once (see above) with the `gh` CLI authenticated against this repo.
 3. **DNS**: at whatever registrar/DNS host manages `gkt.sh`, add a `CNAME` record: `cv` → `gkthiruvathukal.github.io`.
-4. **Settings → Pages → Custom domain**: enter `cv.gkt.sh` (GitHub Pages also reads the `public/CNAME` file committed here, but setting it in the UI is what actually provisions the HTTPS certificate).
+4. **Settings → Environments → github-pages → Deployment branches and tags**: allow both the `main` branch and the tag pattern `v*`. By default the environment only accepts `main`, so a tag-triggered run (which creates a release and refreshes the version badge) builds fine but its deploy job is rejected.
+5. **Settings → Pages → Custom domain**: enter `cv.gkt.sh` (GitHub Pages also reads the `public/CNAME` file committed here, but setting it in the UI is what actually provisions the HTTPS certificate).
 
 ## Word version
 

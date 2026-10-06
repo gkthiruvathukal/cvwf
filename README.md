@@ -66,7 +66,7 @@ That script (venv setup, all five fetch/convert steps, `npm install`, `npm run p
 
 ```sh
 python3 -m venv .venv && source .venv/bin/activate
-pip install bibtexparser scholarly requests beautifulsoup4 pyyaml
+pip install "bibtexparser<2" scholarly requests beautifulsoup4 pyyaml
 
 ./scripts/fetch-zotero.sh                                        # -> bibliography/*-raw.bib
 python3 scripts/sanitize-bib.py                                  # -> bibliography/*.bib

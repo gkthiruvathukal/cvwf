@@ -20,7 +20,7 @@ if [ ! -d .venv ]; then
 fi
 source .venv/bin/activate
 pip install --quiet --upgrade pip
-pip install --quiet bibtexparser scholarly requests beautifulsoup4 pyyaml
+pip install --quiet "bibtexparser<2" scholarly requests beautifulsoup4 pyyaml
 
 echo "==> Fetching Zotero bibliography groups"
 ./scripts/fetch-zotero.sh
